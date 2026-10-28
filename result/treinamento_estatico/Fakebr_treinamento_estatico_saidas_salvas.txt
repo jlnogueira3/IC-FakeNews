@@ -1,0 +1,372 @@
+--- Célula 7, saída 0 ---
+(7200, 30)
+Index(['id', 'texto', 'classe', 'rotulo', 'autor', 'link', 'categoria',
+       'data_publicacao', 'numero_tokens', 'numero_palavras_sem_pontuacao',
+       'numero_types', 'numero_links', 'numero_maiusculas', 'numero_verbos',
+       'numero_verbos_subjuntivo_imperativo', 'numero_substantivos',
+       'numero_adjetivos', 'numero_adverbios', 'numero_verbos_modais',
+       'numero_pronomes_singular_primeira_segunda_pessoa',
+       'numero_pronomes_plural_primeira_pessoa', 'numero_pronomes',
+       'pausalidade', 'numero_caracteres', 'tamanho_medio_sentenca',
+       'tamanho_medio_palavra', 'percentual_erros_ortograficos', 'emotividade',
+       'diversidade', 'data_publicacao_original'],
+      dtype='str')
+
+
+--- Célula 8, saída 0 ---
+   id                                              texto classe  rotulo autor  \
+0   1  Kátia Abreu diz que vai colocar sua expulsão e...   fake       1   mrk   
+1   2  Blog esquerdista dá a entender que reclamar de...   fake       1  None   
+2   3  Alckmin diz que por ele PSDB desembarca, mas...   fake       1  None   
+3   4  Cara de pau não tem limites: Zé Celso aciona M...   fake       1  None   
+4   5  Temer resolve o problema de Luislinda: liberd...   fake       1  None   
+
+                                                link            categoria  \
+0  https://ceticismopolitico.com/2017/11/30/katia...             politica   
+1  https://ceticismopolitico.com/2017/11/28/blog-...  sociedade_cotidiano   
+2  https://ceticismopolitico.com/2017/11/28/alckm...             politica   
+3  https://ceticismopolitico.com/2017/11/28/cara-...             politica   
+4  https://ceticismopolitico.com/2017/11/27/temer...             politica   
+
+  data_publicacao  numero_tokens  numero_palavras_sem_pontuacao  ...  \
+0             NaT            211                            185  ...   
+1             NaT            356                            300  ...   
+2             NaT            274                            224  ...   
+3             NaT            319                            291  ...   
+4             NaT            162                            133  ...   
+
+   numero_pronomes_plural_primeira_pessoa  numero_pronomes  pausalidade  \
+0                                       0               26      2.00000   
+1                                       0               30      3.29412   
+2                                       0               14      3.57143   
+3                                       0               23      2.33333   
+4                                       0               12      2.63636   
+
+   numero_caracteres  tamanho_medio_sentenca  tamanho_medio_palavra  \
+0                815                 14.2308                4.40541   
+1               1321                 17.6471                4.40333   
+2               1075                 16.0000                4.79911   
+3               1341                 24.2500                4.60825   
+4                654                 12.0909                4.91729   
+
+   percentual_erros_ortograficos  emotividade  diversidade  \
+0                       0.000000     0.263158     0.648649   
+1                       0.013333     0.277372     0.623333   
+2                       0.000000     0.262136     0.669643   
+3                       0.003436     0.182540     0.635739   
+4                       0.000000     0.303571     0.721804   
+
+   data_publicacao_original  
+0                2017-11-30  
+1                2017-11-28  
+2                2017-11-28  
+3                2017-11-28  
+4                2017-11-27  
+
+[5 rows x 30 columns]
+
+--- Célula 9, saída 0 ---
+classe
+fake    3600
+true    3600
+Name: count, dtype: int64
+
+--- Célula 10, saída 0 ---
+Tipo da coluna: datetime64[us]
+Datas inválidas ou ausentes: 3531
+Data mais antiga: 0201-01-06 00:00:00
+Data mais recente: 2018-03-25 00:00:00
+
+Quantidade de notícias por ano:
+data_publicacao
+201.0        3
+2012.0       1
+2013.0       1
+2014.0       2
+2015.0     237
+2016.0    1585
+2017.0    1545
+2018.0     295
+dtype: int64
+
+Exemplos de datas inválidas ou ausentes:
+
+
+--- Célula 10, saída 1 ---
+    id classe data_publicacao_original
+0    1   fake               2017-11-30
+1    2   fake               2017-11-28
+2    3   fake               2017-11-28
+3    4   fake               2017-11-28
+4    5   fake               2017-11-27
+5    6   fake               2017-11-27
+6    7   fake               2017-11-27
+7    8   fake               2017-11-25
+8    9   fake               2017-11-25
+9   10   fake               2017-11-24
+10  11   fake               2017-11-24
+11  12   fake               2017-11-24
+12  13   fake               2017-11-24
+13  14   fake               2017-11-24
+14  15   fake               2017-11-24
+15  16   fake               2017-11-23
+16  17   fake               2017-09-14
+17  18   fake               2017-09-11
+18  19   fake               2017-09-08
+19  20   fake               2017-09-08
+
+--- Célula 13, saída 0 ---
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:   12.2s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    1.1s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.5s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:  1.2min finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    1.7s finished
+
+
+--- Célula 18, saída 0 ---
+LogisticRegression - Accuracy: 0.9518055555555556 , F1_Score: 0.951805547188463  Precision : 0.9518058693096314  Recall : 0.9518055555555556 
+ F1-Classe [0.95178547 0.95182563]
+SGDClassifier - Accuracy: 0.9593055555555555 , F1_Score: 0.9593038214147667  Precision : 0.9593838563995978  Recall : 0.9593055555555555 
+ F1-Classe [0.95956948 0.95903817]
+ComplementNB - Accuracy: 0.9116666666666666 , F1_Score: 0.9111963085962408  Precision : 0.9205771915861858  Recall : 0.9116666666666666 
+ F1-Classe [0.90473337 0.91765924]
+RandomForestClassifier - Accuracy: 0.955 , F1_Score: 0.9549902444133146  Precision : 0.9553948160612086  Recall : 0.9550000000000001 
+ F1-Classe [0.9543276  0.95565289]
+SVM - Accuracy: 0.9616666666666667 , F1_Score: 0.9616657083093744  Precision : 0.9617128379504618  Recall : 0.9616666666666667 
+ F1-Classe [0.96185738 0.96147404]
+
+
+--- Célula 19, saída 0 ---
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:   11.0s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    1.0s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.4s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:  1.2min finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    1.7s finished
+
+
+--- Célula 21, saída 0 ---
+LogisticRegression - Accuracy: 0.9518055555555556 , F1_Score: 0.951805547188463  Precision : 0.9518058693096314  Recall : 0.9518055555555556 
+ F1-Classe [0.95178547 0.95182563]
+SGDClassifier - Accuracy: 0.9593055555555555 , F1_Score: 0.9593038214147667  Precision : 0.9581239913616726  Recall : 0.9580555555555555 
+ F1-Classe [0.95831033 0.95779765]
+ComplementNB - Accuracy: 0.9116666666666666 , F1_Score: 0.9111963085962408  Precision : 0.9205771915861858  Recall : 0.9116666666666666 
+ F1-Classe [0.95831033 0.95779765]
+RandomForestClassifier - Accuracy: 0.955 , F1_Score:  Precision : 0.9539899965897465  Recall : 0.9536111111111112 
+ F1-Classe [0.95831033 0.95779765]
+SVM - Accuracy: 0.9616666666666667 , F1_Score: 0.9616657083093744  Precision : 0.9617128379504618  Recall : 0.9616666666666667 
+ F1-Classe [0.95831033 0.95779765]
+
+
+--- Célula 22, saída 0 ---
+LogisticRegression - Accuracy: 0.9518055555555556 , F1_Score: 0.951805547188463 
+ [0.95178547 0.95182563]
+SGDClassifier - Accuracy: 0.9580555555555555 , F1_Score: 0.9580539890532949 
+ [0.95831033 0.95779765]
+ComplementNB - Accuracy: 0.9116666666666666 , F1_Score: 0.9111963085962408 
+ [0.90473337 0.91765924]
+RandomForestClassifier - Accuracy: 0.9536111111111111 , F1_Score: 0.9536014304219028 
+ [0.95293123 0.95427163]
+SVM - Accuracy: 0.9616666666666667 , F1_Score: 0.9616657083093744 
+ [0.96185738 0.96147404]
+
+
+--- Célula 24, saída 0 ---
+========================================
+TESTE — 01/2020
+========================================
+Número de notícias: 175
+Fake: 97
+True: 78
+
+Accuracy:  0.5714
+F1 Macro:  0.3976
+Precision: 0.7820
+Recall:    0.5192
+
+              precision    recall  f1-score   support
+
+        True       1.00      0.04      0.07        78
+        Fake       0.56      1.00      0.72        97
+
+    accuracy                           0.57       175
+   macro avg       0.78      0.52      0.40       175
+weighted avg       0.76      0.57      0.43       175
+
+Matriz de confusão:
+[[ 3 75]
+ [ 0 97]]
+
+
+--- Célula 25, saída 0 ---
+========================================
+TESTE — 02/2020
+========================================
+Número de notícias: 208
+Fake: 108
+True: 100
+
+Accuracy:  0.5240
+F1 Macro:  0.3528
+Precision: 0.7609
+Recall:    0.5050
+
+              precision    recall  f1-score   support
+
+        True       1.00      0.01      0.02       100
+        Fake       0.52      1.00      0.69       108
+
+    accuracy                           0.52       208
+   macro avg       0.76      0.51      0.35       208
+weighted avg       0.75      0.52      0.37       208
+
+Matriz de confusão:
+[[  1  99]
+ [  0 108]]
+
+
+--- Célula 26, saída 0 ---
+========================================
+TESTE — 03/2020
+========================================
+Número de notícias: 581
+Fake: 224
+True: 357
+
+Accuracy:  0.3873
+F1 Macro:  0.2814
+Precision: 0.6931
+Recall:    0.5014
+
+              precision    recall  f1-score   support
+
+        True       1.00      0.00      0.01       357
+        Fake       0.39      1.00      0.56       224
+
+    accuracy                           0.39       581
+   macro avg       0.69      0.50      0.28       581
+weighted avg       0.76      0.39      0.22       581
+
+Matriz de confusão:
+[[  1 356]
+ [  0 224]]
+
+
+--- Célula 28, saída 0 ---
+========================================
+TESTE — 01/2020
+========================================
+Número de notícias: 175
+Fake: 97
+True: 78
+
+Accuracy:  0.5714
+F1 Macro:  0.3976
+Precision: 0.7820
+Recall:    0.5192
+
+              precision    recall  f1-score   support
+
+        True       1.00      0.04      0.07        78
+        Fake       0.56      1.00      0.72        97
+
+    accuracy                           0.57       175
+   macro avg       0.78      0.52      0.40       175
+weighted avg       0.76      0.57      0.43       175
+
+Matriz de confusão:
+[[ 3 75]
+ [ 0 97]]
+
+
+--- Célula 29, saída 0 ---
+========================================
+TESTE — 02/2020
+========================================
+Número de notícias: 208
+Fake: 108
+True: 100
+
+Accuracy:  0.5240
+F1 Macro:  0.3528
+Precision: 0.7609
+Recall:    0.5050
+
+              precision    recall  f1-score   support
+
+        True       1.00      0.01      0.02       100
+        Fake       0.52      1.00      0.69       108
+
+    accuracy                           0.52       208
+   macro avg       0.76      0.51      0.35       208
+weighted avg       0.75      0.52      0.37       208
+
+Matriz de confusão:
+[[  1  99]
+ [  0 108]]
+
+
+--- Célula 30, saída 0 ---
+========================================
+TESTE — 03/2020
+========================================
+Número de notícias: 581
+Fake: 224
+True: 357
+
+Accuracy:  0.3873
+F1 Macro:  0.2814
+Precision: 0.6931
+Recall:    0.5014
+
+              precision    recall  f1-score   support
+
+        True       1.00      0.00      0.01       357
+        Fake       0.39      1.00      0.56       224
+
+    accuracy                           0.39       581
+   macro avg       0.69      0.50      0.28       581
+weighted avg       0.76      0.39      0.22       581
+
+Matriz de confusão:
+[[  1 356]
+ [  0 224]]
+
+
+--- Célula 31, saída 0 ---
+========================================
+TESTE — 01/2020
+========================================
+Número de notícias: 175
+Fake: 97
+True: 78
+
+Accuracy:  0.5714
+F1 Macro:  0.3976
+Precision: 0.7820
+Recall:    0.5192
+
+              precision    recall  f1-score   support
+
+        True       1.00      0.04      0.07        78
+        Fake       0.56      1.00      0.72        97
+
+    accuracy                           0.57       175
+   macro avg       0.78      0.52      0.40       175
+weighted avg       0.76      0.57      0.43       175
+
+Matriz de confusão:
+[[ 3 75]
+ [ 0 97]]
+
+
+--- Célula 32, saída 0 ---

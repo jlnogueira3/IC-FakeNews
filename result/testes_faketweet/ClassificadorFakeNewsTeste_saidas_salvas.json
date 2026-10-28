@@ -1,0 +1,464 @@
+[
+  {
+    "celula": 2,
+    "source": "import pandas as pd\nstrFile = str(DATABASE_DIR / \"FakeTweet\" / \"FakeTweetBr.csv\")\ndf_train = pd.read_csv(strFile)\ndf_train['classificacao'].value_counts()",
+    "outputs": [
+      {
+        "data": {
+          "text/plain": [
+            "classificacao\n",
+            "fake    188\n",
+            "true     91\n",
+            "Name: count, dtype: int64"
+          ]
+        },
+        "execution_count": 16,
+        "metadata": {},
+        "output_type": "execute_result"
+      }
+    ]
+  },
+  {
+    "celula": 3,
+    "source": "!pwd",
+    "outputs": [
+      {
+        "name": "stdout",
+        "output_type": "stream",
+        "text": [
+          "/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/dados/FakeTweet.Br\n"
+        ]
+      }
+    ]
+  },
+  {
+    "celula": 4,
+    "source": "df_train",
+    "outputs": [
+      {
+        "data": {
+          "text/plain": [
+            "     Unnamed: 0            id                  subject  \\\n",
+            "0             0  1.124513e+18          macaco marielle   \n",
+            "1             1  1.124049e+18          macaco marielle   \n",
+            "2             5  1.119295e+18          macaco marielle   \n",
+            "3            10  1.114583e+18          macaco marielle   \n",
+            "4            11  1.113246e+18          macaco marielle   \n",
+            "..          ...           ...                      ...   \n",
+            "274        1345  1.118650e+18  jair time personalidade   \n",
+            "275        1405  1.090221e+18  jair time personalidade   \n",
+            "276        1480  1.073590e+18  jair time personalidade   \n",
+            "277        1499  1.072787e+18  jair time personalidade   \n",
+            "278        2011  1.125022e+18  bicarbonato cura câncer   \n",
+            "\n",
+            "                                                  text classificacao  \\\n",
+            "0    Marielle >BANDIDOS Narco-traficantes-Milícias ...          fake   \n",
+            "1    Bem, as últimas noticias a respeito disso que ...          fake   \n",
+            "2    @jornalnacional convivi com notícias da Mariel...          fake   \n",
+            "3    O Cesari Battisti confessou seus crimes, a esq...          fake   \n",
+            "4    [Agência Lupa] Verificamos: É falso que Thiago...          true   \n",
+            "..                                                 ...           ...   \n",
+            "274  Por “ruptura com a corrupção”, apenas um brasi...          fake   \n",
+            "275  Pessoal, a revista americana TIME incluiu Jair...          fake   \n",
+            "276  QUE COMECE O MIMIMI DOS BOLSOBURROS. Jair Bols...          true   \n",
+            "277  Circula nas redes sociais uma foto da capa da ...          true   \n",
+            "278  Circulam pelas redes sociais publicações que a...          true   \n",
+            "\n",
+            "                 date  retweets  favorites  \\\n",
+            "0     2019-05-04 0:16         0          0   \n",
+            "1    2019-05-02 17:33         0          0   \n",
+            "2    2019-04-19 14:41         0          0   \n",
+            "3    2019-04-06 14:36         0          0   \n",
+            "4    2019-04-02 22:04         1          0   \n",
+            "..                ...       ...        ...   \n",
+            "274  2019-04-17 20:00         0          0   \n",
+            "275   2019-01-29 9:10         2          1   \n",
+            "276  2018-12-14 11:47         0          1   \n",
+            "277   2018-12-12 6:37         0          1   \n",
+            "278  2019-05-05 10:00         9         36   \n",
+            "\n",
+            "                                             permalink  \n",
+            "0    https://twitter.com/MRTT_/status/1124513050218...  \n",
+            "1    https://twitter.com/EvaristoKlebber/status/112...  \n",
+            "2    https://twitter.com/luiztemper/status/11192950...  \n",
+            "3    https://twitter.com/GrimoaldoL/status/11145825...  \n",
+            "4    https://twitter.com/antmarobel/status/11132459...  \n",
+            "..                                                 ...  \n",
+            "274  https://twitter.com/kohavitt/status/1118650345...  \n",
+            "275  https://twitter.com/alcamorim/status/109022062...  \n",
+            "276  https://twitter.com/jorgetemer/status/10735903...  \n",
+            "277  https://twitter.com/juidsonjoc/status/10727874...  \n",
+            "278  https://twitter.com/agencialupa/status/1125022...  \n",
+            "\n",
+            "[279 rows x 9 columns]"
+          ],
+          "text/html": [
+            "<div>\n",
+            "<style scoped>\n",
+            "    .dataframe tbody tr th:only-of-type {\n",
+            "        vertical-align: middle;\n",
+            "    }\n",
+            "\n",
+            "    .dataframe tbody tr th {\n",
+            "        vertical-align: top;\n",
+            "    }\n",
+            "\n",
+            "    .dataframe thead th {\n",
+            "        text-align: right;\n",
+            "    }\n",
+            "</style>\n",
+            "<table border=\"1\" class=\"dataframe\">\n",
+            "  <thead>\n",
+            "    <tr style=\"text-align: right;\">\n",
+            "      <th></th>\n",
+            "      <th>Unnamed: 0</th>\n",
+            "      <th>id</th>\n",
+            "      <th>subject</th>\n",
+            "      <th>text</th>\n",
+            "      <th>classificacao</th>\n",
+            "      <th>date</th>\n",
+            "      <th>retweets</th>\n",
+            "      <th>favorites</th>\n",
+            "      <th>permalink</th>\n",
+            "    </tr>\n",
+            "  </thead>\n",
+            "  <tbody>\n",
+            "    <tr>\n",
+            "      <th>0</th>\n",
+            "      <td>0</td>\n",
+            "      <td>1.124513e+18</td>\n",
+            "      <td>macaco marielle</td>\n",
+            "      <td>Marielle &gt;BANDIDOS Narco-traficantes-Milícias ...</td>\n",
+            "      <td>fake</td>\n",
+            "      <td>2019-05-04 0:16</td>\n",
+            "      <td>0</td>\n",
+            "      <td>0</td>\n",
+            "      <td>https://twitter.com/MRTT_/status/1124513050218...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>1</th>\n",
+            "      <td>1</td>\n",
+            "      <td>1.124049e+18</td>\n",
+            "      <td>macaco marielle</td>\n",
+            "      <td>Bem, as últimas noticias a respeito disso que ...</td>\n",
+            "      <td>fake</td>\n",
+            "      <td>2019-05-02 17:33</td>\n",
+            "      <td>0</td>\n",
+            "      <td>0</td>\n",
+            "      <td>https://twitter.com/EvaristoKlebber/status/112...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>2</th>\n",
+            "      <td>5</td>\n",
+            "      <td>1.119295e+18</td>\n",
+            "      <td>macaco marielle</td>\n",
+            "      <td>@jornalnacional convivi com notícias da Mariel...</td>\n",
+            "      <td>fake</td>\n",
+            "      <td>2019-04-19 14:41</td>\n",
+            "      <td>0</td>\n",
+            "      <td>0</td>\n",
+            "      <td>https://twitter.com/luiztemper/status/11192950...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>3</th>\n",
+            "      <td>10</td>\n",
+            "      <td>1.114583e+18</td>\n",
+            "      <td>macaco marielle</td>\n",
+            "      <td>O Cesari Battisti confessou seus crimes, a esq...</td>\n",
+            "      <td>fake</td>\n",
+            "      <td>2019-04-06 14:36</td>\n",
+            "      <td>0</td>\n",
+            "      <td>0</td>\n",
+            "      <td>https://twitter.com/GrimoaldoL/status/11145825...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>4</th>\n",
+            "      <td>11</td>\n",
+            "      <td>1.113246e+18</td>\n",
+            "      <td>macaco marielle</td>\n",
+            "      <td>[Agência Lupa] Verificamos: É falso que Thiago...</td>\n",
+            "      <td>true</td>\n",
+            "      <td>2019-04-02 22:04</td>\n",
+            "      <td>1</td>\n",
+            "      <td>0</td>\n",
+            "      <td>https://twitter.com/antmarobel/status/11132459...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>...</th>\n",
+            "      <td>...</td>\n",
+            "      <td>...</td>\n",
+            "      <td>...</td>\n",
+            "      <td>...</td>\n",
+            "      <td>...</td>\n",
+            "      <td>...</td>\n",
+            "      <td>...</td>\n",
+            "      <td>...</td>\n",
+            "      <td>...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>274</th>\n",
+            "      <td>1345</td>\n",
+            "      <td>1.118650e+18</td>\n",
+            "      <td>jair time personalidade</td>\n",
+            "      <td>Por “ruptura com a corrupção”, apenas um brasi...</td>\n",
+            "      <td>fake</td>\n",
+            "      <td>2019-04-17 20:00</td>\n",
+            "      <td>0</td>\n",
+            "      <td>0</td>\n",
+            "      <td>https://twitter.com/kohavitt/status/1118650345...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>275</th>\n",
+            "      <td>1405</td>\n",
+            "      <td>1.090221e+18</td>\n",
+            "      <td>jair time personalidade</td>\n",
+            "      <td>Pessoal, a revista americana TIME incluiu Jair...</td>\n",
+            "      <td>fake</td>\n",
+            "      <td>2019-01-29 9:10</td>\n",
+            "      <td>2</td>\n",
+            "      <td>1</td>\n",
+            "      <td>https://twitter.com/alcamorim/status/109022062...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>276</th>\n",
+            "      <td>1480</td>\n",
+            "      <td>1.073590e+18</td>\n",
+            "      <td>jair time personalidade</td>\n",
+            "      <td>QUE COMECE O MIMIMI DOS BOLSOBURROS. Jair Bols...</td>\n",
+            "      <td>true</td>\n",
+            "      <td>2018-12-14 11:47</td>\n",
+            "      <td>0</td>\n",
+            "      <td>1</td>\n",
+            "      <td>https://twitter.com/jorgetemer/status/10735903...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>277</th>\n",
+            "      <td>1499</td>\n",
+            "      <td>1.072787e+18</td>\n",
+            "      <td>jair time personalidade</td>\n",
+            "      <td>Circula nas redes sociais uma foto da capa da ...</td>\n",
+            "      <td>true</td>\n",
+            "      <td>2018-12-12 6:37</td>\n",
+            "      <td>0</td>\n",
+            "      <td>1</td>\n",
+            "      <td>https://twitter.com/juidsonjoc/status/10727874...</td>\n",
+            "    </tr>\n",
+            "    <tr>\n",
+            "      <th>278</th>\n",
+            "      <td>2011</td>\n",
+            "      <td>1.125022e+18</td>\n",
+            "      <td>bicarbonato cura câncer</td>\n",
+            "      <td>Circulam pelas redes sociais publicações que a...</td>\n",
+            "      <td>true</td>\n",
+            "      <td>2019-05-05 10:00</td>\n",
+            "      <td>9</td>\n",
+            "      <td>36</td>\n",
+            "      <td>https://twitter.com/agencialupa/status/1125022...</td>\n",
+            "    </tr>\n",
+            "  </tbody>\n",
+            "</table>\n",
+            "<p>279 rows × 9 columns</p>\n",
+            "</div>"
+          ]
+        },
+        "execution_count": 18,
+        "metadata": {},
+        "output_type": "execute_result"
+      }
+    ]
+  },
+  {
+    "celula": 5,
+    "source": "df_train['classificacao'].value_counts()",
+    "outputs": [
+      {
+        "data": {
+          "text/plain": [
+            "classificacao\n",
+            "fake    188\n",
+            "true     91\n",
+            "Name: count, dtype: int64"
+          ]
+        },
+        "execution_count": 19,
+        "metadata": {},
+        "output_type": "execute_result"
+      }
+    ]
+  },
+  {
+    "celula": 6,
+    "source": "print(df_train['text'].value_counts())",
+    "outputs": [
+      {
+        "name": "stdout",
+        "output_type": "stream",
+        "text": [
+          "text\n",
+          "Um dos sites anti-hoax desmentiu o boato de que o MST teria roubado vítimas do crime ambiental em Brumadinho . É muito mais fácil o MST ter AJUDADO as vítimas com doações de produtos agrícolas do que ter roubado. Quem roubou foi a Vale privatizada.                                                                                                                     2\n",
+          "Marielle >BANDIDOS Narco-traficantes-Milícias pisou na bola PCC >Mandante do crime #Brazão do PT #OrganizaçãoCriminosa Assassinada por THIAGO- MACACO Midia para de acusar quem destruiu a sonhada #GRANDEPATRIA @ECantanhede @CarvalhosaMo @CarlosBolsonaro @RenovMidia @roxmo @SITEFCS pic.twitter.com/8HTb0VVmj8                                                          1\n",
+          "Bem, as últimas noticias a respeito disso que o verdadeiro assassino de Marielle não é aqueles acusados senão um elemento de codinome  Macaco \". Ou seja, não colou a relação Bolsonaro x Marielle . Reveja suas fontes.\"                                                                                                                                                    1\n",
+          "@jornalnacional convivi com notícias da Marielle durante 3 meses quase todos os dias. Porque pararam as reportagens? Só porque se descobriu que seu matador foi Thiago macaco ? Negro favelado e ligado ao tráfico? Bonemer vc é o supra sumo do ridículo .                                                                                                                  1\n",
+          "O Cesari Battisti confessou seus crimes, a esquerda calou; o assassino de MARIELLE foi descoberto, a esquerda se calou e agora o Luladrão confessou, a esquerda meteu a língua onde o macaco meu o caju. Demagogos, hipocritas e fariseus                                                                                                                                    1\n",
+          "                                                                                                                                                                                                                                                                                                                                                                            ..\n",
+          "Por “ruptura com a corrupção”, apenas um brasileiro aparece entre os ‘100 mais influentes’ da revista ‘ Time ’. QUEM É ESSA INFLUENTE PERSONALIDADE ? JAIR MESSIAS BOLSONARO. Tbm apareceram Trump e Netanyahu. https://www. jornaldacidadeonline.com.br/noticias/14195 /por-ruptura-com-a-corrupcao-um-brasileiro-aparece-entre-os-100-mais-influentes-da-revista-time …    1\n",
+          "Pessoal, a revista americana TIME incluiu Jair Bolsonaro para concorrer à PERSONALIDADE DO ANO. A PETRALHADA descobriu antes e ele tem apenas 3% de “YES” e 97% de “NO”! Vamos virar este jogo? É simples clique aqui e siga até ver Jair Bolsonaro. https:// discover.apester.com/media/5be40171 3cea78c501552c1a … PARTICIPE!                                              1\n",
+          "QUE COMECE O MIMIMI DOS BOLSOBURROS. Jair Bolsonaro não foi eleito Personalidade do Ano pela revista  Time \" https:// noticias.uol.com.br/confere/ultima s-noticias/2018/12/14/bolsonaro-nao-foi-eleito-personalidade-do-ano-pela-revista-time.htm … via @UOLNoticias @UOL\"                                                                                                  1\n",
+          "Circula nas redes sociais uma foto da capa da revista Time com o presidente eleito Jair Bolsonaro como personalidade do ano. A imagem é #FAKE . A  Time \" escolheu os jornalistas mortos e presos como \"Pessoa do Ano\" de 2018. - É. Parece que a campanha eleitoral continua...\"                                                                                            1\n",
+          "Circulam pelas redes sociais publicações que afirmam que o bicarbonato de sódio ajudaria na cura de câncer . Os conteúdos também dizem que o câncer é um fungo. Confira em: http:// bit.ly/2H07gIO . pic.twitter.com/xKNgOBPBAV                                                                                                                                              1\n",
+          "Name: count, Length: 278, dtype: int64\n"
+        ]
+      }
+    ]
+  },
+  {
+    "celula": 13,
+    "source": "X_train.shape,len(y_train2)",
+    "outputs": [
+      {
+        "data": {
+          "text/plain": [
+            "((251, 7407), 251)"
+          ]
+        },
+        "execution_count": 26,
+        "metadata": {},
+        "output_type": "execute_result"
+      }
+    ]
+  },
+  {
+    "celula": 15,
+    "source": "from sklearn.model_selection import cross_val_predict\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.linear_model import SGDClassifier\nfrom sklearn.naive_bayes import BernoulliNB\nfrom sklearn.ensemble  import RandomForestClassifier\nfrom sklearn.svm import LinearSVC\n\n\ncvC = 10\nclassifier = LogisticRegression()\npred = cross_val_predict(classifier, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier2 = SGDClassifier()\npred2 = cross_val_predict(classifier2, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier3 = BernoulliNB()\npred3 = cross_val_predict(classifier3, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier4 = RandomForestClassifier()\npred4 = cross_val_predict(classifier4, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier5 = LinearSVC()\npred5 = cross_val_predict(classifier5, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)",
+    "outputs": [
+      {
+        "name": "stderr",
+        "output_type": "stream",
+        "text": [
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.1s finished\n",
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished\n",
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished\n",
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.9s finished\n",
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done   7 out of  10 | elapsed:    0.0s remaining:    0.0s\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished\n"
+        ]
+      }
+    ]
+  },
+  {
+    "celula": 19,
+    "source": "print(\"LogisticRegression - Accuracy:\", score,\", F1_Score:\", f1_geral,\" Precision :\",ps1,\" Recall :\",r1,  \"\\n F1-Classe\",df1_geral)\nprint(\"SGDClassifier - Accuracy:\", score2,\", F1_Score:\", f1_geral2,\" Precision :\",ps2,\" Recall :\",r2,  \"\\n F1-Classe\",df1_gera2)\nprint(\"ComplementNB - Accuracy:\", score3,\", F1_Score:\", f1_geral3,\" Precision :\",ps3,\" Recall :\",r3,  \"\\n F1-Classe\",df1_gera3)\nprint(\"RandomForestClassifier - Accuracy:\", score4,\", F1_Score:\",f1_geral4,\" Precision :\",ps4,\" Recall :\",r4,  \"\\n F1-Classe\",df1_gera4)\nprint(\"SVM - Accuracy:\", score5,\", F1_Score:\", f1_geral5,\" Precision :\",ps5,\" Recall :\",r5,  \"\\n F1-Classe\",df1_gera5)",
+    "outputs": [
+      {
+        "name": "stdout",
+        "output_type": "stream",
+        "text": [
+          "LogisticRegression - Accuracy: 0.8565737051792829 , F1_Score: 0.8184667309546769  Precision : 0.8883647798742138  Recall : 0.792276247848537 \n",
+          " F1-Classe [0.90163934 0.73529412]\n",
+          "SGDClassifier - Accuracy: 0.8446215139442231 , F1_Score: 0.8250245777102512  Precision : 0.8240661534074707  Recall : 0.8260183591508893 \n",
+          " F1-Classe [0.88358209 0.76646707]\n",
+          "ComplementNB - Accuracy: 0.7450199203187251 , F1_Score: 0.611905682257441  Precision : 0.8392339544513457  Recall : 0.6175057372346529 \n",
+          " F1-Classe [0.83919598 0.38461538]\n",
+          "RandomForestClassifier - Accuracy: 0.7928286852589641 , F1_Score: 0.7085045560121493  Precision : 0.8678760077842647  Recall : 0.6897948938611589 \n",
+          " F1-Classe [0.86528497 0.55172414]\n",
+          "SVM - Accuracy: 0.8725099601593626 , F1_Score: 0.8415153906866615  Precision : 0.8989419424850786  Recall : 0.8163726333907056 \n",
+          " F1-Classe [0.91160221 0.77142857]\n"
+        ]
+      }
+    ]
+  },
+  {
+    "celula": 24,
+    "source": "from sklearn.model_selection import cross_val_predict\ncvC = 10\nclassifier = LogisticRegression()\npred = cross_val_predict(classifier, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier2 = SGDClassifier()\npred2 = cross_val_predict(classifier2, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier3 = BernoulliNB()\npred3 = cross_val_predict(classifier3, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier4 = RandomForestClassifier()\npred4 = cross_val_predict(classifier4, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier5 = LinearSVC()\npred5 = cross_val_predict(classifier5, X_train, y_train2, cv=cvC, verbose=True, n_jobs=2)",
+    "outputs": [
+      {
+        "name": "stderr",
+        "output_type": "stream",
+        "text": [
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.2s finished\n",
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done   7 out of  10 | elapsed:    0.0s remaining:    0.0s\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.1s finished\n",
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished\n",
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    1.3s finished\n",
+          "[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.\n",
+          "[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished\n"
+        ]
+      }
+    ]
+  },
+  {
+    "celula": 29,
+    "source": "print(\"LogisticRegression - Accuracy:\", score,\", F1_Score:\", f1_geral,\" Precision :\",ps1,\" Recall :\",r1,  \"\\n F1-Classe\",df1_geral)\nprint(\"SGDClassifier - Accuracy:\", score2,\", F1_Score:\", f1_geral2,\" Precision :\",ps2,\" Recall :\",r2,  \"\\n F1-Classe\",df1_gera2)\nprint(\"ComplementNB - Accuracy:\", score3,\", F1_Score:\", f1_geral3,\" Precision :\",ps3,\" Recall :\",r3,  \"\\n F1-Classe\",df1_gera2)\nprint(\"RandomForestClassifier - Accuracy:\", score4,\", F1_Score:\",\" Precision :\",ps4,\" Recall :\",r4,  \"\\n F1-Classe\",df1_gera2)\nprint(\"SVM - Accuracy:\", score5,\", F1_Score:\", f1_geral5,\" Precision :\",ps5,\" Recall :\",r5,  \"\\n F1-Classe\",df1_gera2)",
+    "outputs": [
+      {
+        "name": "stdout",
+        "output_type": "stream",
+        "text": [
+          "LogisticRegression - Accuracy: 0.8565737051792829 , F1_Score: 0.8593403461267826  Precision : 0.8682742128337984  Recall : 0.8601190476190477 \n",
+          " F1-Classe [0.8488746  0.86980609]\n",
+          "SGDClassifier - Accuracy: 0.8446215139442231 , F1_Score: 0.8250245777102512  Precision : 0.8888888888888888  Recall : 0.8869047619047619 \n",
+          " F1-Classe [0.88271605 0.8908046 ]\n",
+          "ComplementNB - Accuracy: 0.7450199203187251 , F1_Score: 0.611905682257441  Precision : 0.8181818181818181  Recall : 0.7142857142857143 \n",
+          " F1-Classe [0.88271605 0.8908046 ]\n",
+          "RandomForestClassifier - Accuracy: 0.7928286852589641 , F1_Score:  Precision : 0.8265433058622298  Recall : 0.7976190476190477 \n",
+          " F1-Classe [0.88271605 0.8908046 ]\n",
+          "SVM - Accuracy: 0.8725099601593626 , F1_Score: 0.8415153906866615  Precision : 0.8504611330698286  Recall : 0.8392857142857143 \n",
+          " F1-Classe [0.88271605 0.8908046 ]\n"
+        ]
+      }
+    ]
+  },
+  {
+    "celula": 30,
+    "source": "print(\"LogisticRegression - Accuracy:\", acc1,\", F1_Score:\", f1_geral, \"\\n\",df1_geral)\nprint(\"SGDClassifier - Accuracy:\", acc2,\", F1_Score:\", f1_gera2, \"\\n\",df1_gera2)\nprint(\"ComplementNB - Accuracy:\", acc3,\", F1_Score:\", f1_gera3, \"\\n\",df1_gera3)\nprint(\"RandomForestClassifier - Accuracy:\", acc4,\", F1_Score:\", f1_gera4, \"\\n\",df1_gera4)\nprint(\"SVM - Accuracy:\", acc5,\", F1_Score:\", f1_gera5, \"\\n\",df1_gera5)",
+    "outputs": [
+      {
+        "name": "stdout",
+        "output_type": "stream",
+        "text": [
+          "LogisticRegression - Accuracy: 0.8601190476190477 , F1_Score: 0.8593403461267826 \n",
+          " [0.8488746  0.86980609]\n",
+          "SGDClassifier - Accuracy: 0.8869047619047619 , F1_Score: 0.8867603235419328 \n",
+          " [0.88271605 0.8908046 ]\n",
+          "ComplementNB - Accuracy: 0.7142857142857143 , F1_Score: 0.6888888888888889 \n",
+          " [0.6        0.77777778]\n",
+          "RandomForestClassifier - Accuracy: 0.7976190476190477 , F1_Score: 0.793035979564477 \n",
+          " [0.76223776 0.8238342 ]\n",
+          "SVM - Accuracy: 0.8392857142857143 , F1_Score: 0.8379942140790742 \n",
+          " [0.82352941 0.85245902]\n"
+        ]
+      }
+    ]
+  },
+  {
+    "celula": 32,
+    "source": "import pandas as pd\nstrDir = \"/Users/paulocordeiro/Dropbox/_MESTRADO/NOTEBOOKS/_WEBMIDIA 2019/GET_OLD_TWEETS/\"\nstrFile = str(DATABASE_DIR / \"FakeTweet\" / \"merge-val12-8.csv\")\ndf_train = pd.read_csv(strFile)",
+    "outputs": [
+      {
+        "ename": "FileNotFoundError",
+        "evalue": "[Errno 2] No such file or directory: 'merge-val12-8.csv'",
+        "output_type": "error",
+        "traceback": [
+          "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
+          "\u001b[31mFileNotFoundError\u001b[39m                         Traceback (most recent call last)",
+          "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[44]\u001b[39m\u001b[32m, line 4\u001b[39m\n\u001b[32m      1\u001b[39m \u001b[38;5;28;01mimport\u001b[39;00m pandas \u001b[38;5;28;01mas\u001b[39;00m pd\n\u001b[32m      2\u001b[39m strDir = \u001b[33m\"/Users/paulocordeiro/Dropbox/_MESTRADO/NOTEBOOKS/_WEBMIDIA 2019/GET_OLD_TWEETS/\"\u001b[39m\n\u001b[32m      3\u001b[39m strFile = \u001b[33m\"merge-val12-8.csv\"\u001b[39m\n\u001b[32m----> \u001b[39m\u001b[32m4\u001b[39m df_train = pd.read_csv(strFile)\n",
+          "\u001b[36mFile \u001b[39m\u001b[32m~/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/pandas/io/parsers/readers.py:873\u001b[39m, in \u001b[36mread_csv\u001b[39m\u001b[34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, skip_blank_lines, parse_dates, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, low_memory, memory_map, float_precision, storage_options, dtype_backend)\u001b[39m\n\u001b[32m    861\u001b[39m kwds_defaults = _refine_defaults_read(\n\u001b[32m    862\u001b[39m     dialect,\n\u001b[32m    863\u001b[39m     delimiter,\n\u001b[32m   (...)\u001b[39m\u001b[32m    869\u001b[39m     dtype_backend=dtype_backend,\n\u001b[32m    870\u001b[39m )\n\u001b[32m    871\u001b[39m kwds.update(kwds_defaults)\n\u001b[32m--> \u001b[39m\u001b[32m873\u001b[39m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[30;43m_read\u001b[39;49m\u001b[30;43m(\u001b[39;49m\u001b[30;43mfilepath_or_buffer\u001b[39;49m\u001b[30;43m,\u001b[39;49m\u001b[30;43m \u001b[39;49m\u001b[30;43mkwds\u001b[39;49m\u001b[30;43m)\u001b[39;49m\n",
+          "\u001b[36mFile \u001b[39m\u001b[32m~/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/pandas/io/parsers/readers.py:300\u001b[39m, in \u001b[36m_read\u001b[39m\u001b[34m(filepath_or_buffer, kwds)\u001b[39m\n\u001b[32m    297\u001b[39m _validate_names(kwds.get(\u001b[33m\"\u001b[39m\u001b[33mnames\u001b[39m\u001b[33m\"\u001b[39m, \u001b[38;5;28;01mNone\u001b[39;00m))\n\u001b[32m    299\u001b[39m \u001b[38;5;66;03m# Create the parser.\u001b[39;00m\n\u001b[32m--> \u001b[39m\u001b[32m300\u001b[39m parser = \u001b[30;43mTextFileReader\u001b[39;49m\u001b[30;43m(\u001b[39;49m\u001b[30;43mfilepath_or_buffer\u001b[39;49m\u001b[30;43m,\u001b[39;49m\u001b[30;43m \u001b[39;49m\u001b[30;43m*\u001b[39;49m\u001b[30;43m*\u001b[39;49m\u001b[30;43mkwds\u001b[39;49m\u001b[30;43m)\u001b[39;49m\n\u001b[32m    302\u001b[39m \u001b[38;5;28;01mif\u001b[39;00m chunksize \u001b[38;5;129;01mor\u001b[39;00m iterator:\n\u001b[32m    303\u001b[39m     \u001b[38;5;28;01mreturn\u001b[39;00m parser\n",
+          "\u001b[36mFile \u001b[39m\u001b[32m~/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/pandas/io/parsers/readers.py:1645\u001b[39m, in \u001b[36mTextFileReader.__init__\u001b[39m\u001b[34m(self, f, engine, **kwds)\u001b[39m\n\u001b[32m   1642\u001b[39m     \u001b[38;5;28mself\u001b[39m.options[\u001b[33m\"\u001b[39m\u001b[33mhas_index_names\u001b[39m\u001b[33m\"\u001b[39m] = kwds[\u001b[33m\"\u001b[39m\u001b[33mhas_index_names\u001b[39m\u001b[33m\"\u001b[39m]\n\u001b[32m   1644\u001b[39m \u001b[38;5;28mself\u001b[39m.handles: IOHandles | \u001b[38;5;28;01mNone\u001b[39;00m = \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[32m-> \u001b[39m\u001b[32m1645\u001b[39m \u001b[38;5;28mself\u001b[39m._engine = \u001b[30;43mself\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43m_make_engine\u001b[39;49m\u001b[30;43m(\u001b[39;49m\u001b[30;43mf\u001b[39;49m\u001b[30;43m,\u001b[39;49m\u001b[30;43m \u001b[39;49m\u001b[30;43mself\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43mengine\u001b[39;49m\u001b[30;43m)\u001b[39;49m\n",
+          "\u001b[36mFile \u001b[39m\u001b[32m~/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/pandas/io/parsers/readers.py:1904\u001b[39m, in \u001b[36mTextFileReader._make_engine\u001b[39m\u001b[34m(self, f, engine)\u001b[39m\n\u001b[32m   1902\u001b[39m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[33m\"\u001b[39m\u001b[33mb\u001b[39m\u001b[33m\"\u001b[39m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;129;01min\u001b[39;00m mode:\n\u001b[32m   1903\u001b[39m         mode += \u001b[33m\"\u001b[39m\u001b[33mb\u001b[39m\u001b[33m\"\u001b[39m\n\u001b[32m-> \u001b[39m\u001b[32m1904\u001b[39m \u001b[38;5;28mself\u001b[39m.handles = \u001b[30;43mget_handle\u001b[39;49m\u001b[30;43m(\u001b[39;49m\n\u001b[32m   1905\u001b[39m \u001b[30;43m    \u001b[39;49m\u001b[30;43mf\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m   1906\u001b[39m \u001b[30;43m    \u001b[39;49m\u001b[30;43mmode\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m   1907\u001b[39m \u001b[30;43m    \u001b[39;49m\u001b[30;43mencoding\u001b[39;49m\u001b[30;43m=\u001b[39;49m\u001b[30;43mself\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43moptions\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43mget\u001b[39;49m\u001b[30;43m(\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43mencoding\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43m,\u001b[39;49m\u001b[30;43m \u001b[39;49m\u001b[30;43;01mNone\u001b[39;49;00m\u001b[30;43m)\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m   1908\u001b[39m \u001b[30;43m    \u001b[39;49m\u001b[30;43mcompression\u001b[39;49m\u001b[30;43m=\u001b[39;49m\u001b[30;43mself\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43moptions\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43mget\u001b[39;49m\u001b[30;43m(\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43mcompression\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43m,\u001b[39;49m\u001b[30;43m \u001b[39;49m\u001b[30;43;01mNone\u001b[39;49;00m\u001b[30;43m)\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m   1909\u001b[39m \u001b[30;43m    \u001b[39;49m\u001b[30;43mmemory_map\u001b[39;49m\u001b[30;43m=\u001b[39;49m\u001b[30;43mself\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43moptions\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43mget\u001b[39;49m\u001b[30;43m(\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43mmemory_map\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43m,\u001b[39;49m\u001b[30;43m \u001b[39;49m\u001b[30;43;01mFalse\u001b[39;49;00m\u001b[30;43m)\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m   1910\u001b[39m \u001b[30;43m    \u001b[39;49m\u001b[30;43mis_text\u001b[39;49m\u001b[30;43m=\u001b[39;49m\u001b[30;43mis_text\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m   1911\u001b[39m \u001b[30;43m    \u001b[39;49m\u001b[30;43merrors\u001b[39;49m\u001b[30;43m=\u001b[39;49m\u001b[30;43mself\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43moptions\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43mget\u001b[39;49m\u001b[30;43m(\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43mencoding_errors\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43m,\u001b[39;49m\u001b[30;43m \u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43mstrict\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43m)\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m   1912\u001b[39m \u001b[30;43m    \u001b[39;49m\u001b[30;43mstorage_options\u001b[39;49m\u001b[30;43m=\u001b[39;49m\u001b[30;43mself\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43moptions\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43mget\u001b[39;49m\u001b[30;43m(\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43mstorage_options\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43m,\u001b[39;49m\u001b[30;43m \u001b[39;49m\u001b[30;43;01mNone\u001b[39;49;00m\u001b[30;43m)\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m   1913\u001b[39m \u001b[30;43m\u001b[39;49m\u001b[30;43m)\u001b[39;49m\n\u001b[32m   1914\u001b[39m \u001b[38;5;28;01massert\u001b[39;00m \u001b[38;5;28mself\u001b[39m.handles \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[32m   1915\u001b[39m f = \u001b[38;5;28mself\u001b[39m.handles.handle\n",
+          "\u001b[36mFile \u001b[39m\u001b[32m~/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/pandas/io/common.py:930\u001b[39m, in \u001b[36mget_handle\u001b[39m\u001b[34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)\u001b[39m\n\u001b[32m    925\u001b[39m \u001b[38;5;28;01melif\u001b[39;00m \u001b[38;5;28misinstance\u001b[39m(handle, \u001b[38;5;28mstr\u001b[39m):\n\u001b[32m    926\u001b[39m     \u001b[38;5;66;03m# Check whether the filename is to be opened in binary mode.\u001b[39;00m\n\u001b[32m    927\u001b[39m     \u001b[38;5;66;03m# Binary mode does not support 'encoding' and 'newline'.\u001b[39;00m\n\u001b[32m    928\u001b[39m     \u001b[38;5;28;01mif\u001b[39;00m ioargs.encoding \u001b[38;5;129;01mand\u001b[39;00m \u001b[33m\"\u001b[39m\u001b[33mb\u001b[39m\u001b[33m\"\u001b[39m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;129;01min\u001b[39;00m ioargs.mode:\n\u001b[32m    929\u001b[39m         \u001b[38;5;66;03m# Encoding\u001b[39;00m\n\u001b[32m--> \u001b[39m\u001b[32m930\u001b[39m         handle = \u001b[30;43mopen\u001b[39;49m\u001b[30;43m(\u001b[39;49m\n\u001b[32m    931\u001b[39m \u001b[30;43m            \u001b[39;49m\u001b[30;43mhandle\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m    932\u001b[39m \u001b[30;43m            \u001b[39;49m\u001b[30;43mioargs\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43mmode\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m    933\u001b[39m \u001b[30;43m            \u001b[39;49m\u001b[30;43mencoding\u001b[39;49m\u001b[30;43m=\u001b[39;49m\u001b[30;43mioargs\u001b[39;49m\u001b[30;43m.\u001b[39;49m\u001b[30;43mencoding\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m    934\u001b[39m \u001b[30;43m            \u001b[39;49m\u001b[30;43merrors\u001b[39;49m\u001b[30;43m=\u001b[39;49m\u001b[30;43merrors\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m    935\u001b[39m \u001b[30;43m            \u001b[39;49m\u001b[30;43mnewline\u001b[39;49m\u001b[30;43m=\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43m\"\u001b[39;49m\u001b[30;43m,\u001b[39;49m\n\u001b[32m    936\u001b[39m \u001b[30;43m        \u001b[39;49m\u001b[30;43m)\u001b[39;49m\n\u001b[32m    937\u001b[39m     \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[32m    938\u001b[39m         \u001b[38;5;66;03m# Binary mode\u001b[39;00m\n\u001b[32m    939\u001b[39m         handle = \u001b[38;5;28mopen\u001b[39m(handle, ioargs.mode)\n",
+          "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'merge-val12-8.csv'"
+        ]
+      }
+    ]
+  }
+]

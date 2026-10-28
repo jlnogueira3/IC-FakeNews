@@ -1,0 +1,24 @@
+Base de dados utilizada para treinamento: Fake.br
+Base de dados utilizada para avaliação: FakeRecogna
+
+# Como transformar o texto em vetor e fazer o treinamento
+
+'''
+python
+
+X_inicial = vetorizador.transform(
+    dados_iniciais["texto"]
+)
+
+y_inicial = dados_iniciais["rotulo"].to_numpy()
+'''
+
+
+Como fazer o treinamento
+
+'''
+
+
+
+'''
+

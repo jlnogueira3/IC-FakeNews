@@ -1,0 +1,8 @@
+.venv/
+.idea/
+__pycache__/
+.ipynb_checkpoints/
+
+database/
+code/apoio/recursos/
+result/organizacao/

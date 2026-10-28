@@ -1,0 +1,213 @@
+--- Célula 6, saída 0 ---
+Processo finalizado.
+
+
+--- Célula 7, saída 0 ---
+Arquivo descompactado com sucesso!
+
+
+--- Célula 9, saída 0 ---
+Noticias falsas importadas com sucesso
+Noticias verdadeiras importadas com sucesso
+
+Qtd. de noticias falsas: 3600
+Qtd. de noticias verdadeiras: 3600
+
+
+--- Célula 11, saída 0 ---
+<>:40: SyntaxWarning: invalid escape sequence '\s'
+<>:44: SyntaxWarning: invalid escape sequence '\s'
+<>:40: SyntaxWarning: invalid escape sequence '\s'
+<>:44: SyntaxWarning: invalid escape sequence '\s'
+/tmp/ipykernel_12453/2271790213.py:40: SyntaxWarning: invalid escape sequence '\s'
+  regex = re.compile('(http|https)://[^\s]*')
+/tmp/ipykernel_12453/2271790213.py:44: SyntaxWarning: invalid escape sequence '\s'
+  regex = re.compile('[^\s]+@[^\s]+')
+
+
+--- Célula 11, saída 1 ---
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: nltk in /home/joao-lucas/.local/lib/python3.12/site-packages (3.9.4)
+Requirement already satisfied: click in /usr/lib/python3/dist-packages (from nltk) (8.1.6)
+Requirement already satisfied: joblib in /home/joao-lucas/.local/lib/python3.12/site-packages (from nltk) (1.5.3)
+Requirement already satisfied: regex>=2021.8.3 in /home/joao-lucas/.local/lib/python3.12/site-packages (from nltk) (2026.5.9)
+Requirement already satisfied: tqdm in /home/joao-lucas/.local/lib/python3.12/site-packages (from nltk) (4.68.3)
+Note: you may need to restart the kernel to use updated packages.
+Antes do preprocessamento: 
+ Quase 30 anos depois, banhistas assustados estão se afastando do principal balneário de Uruguaiana, na Fronteira Oeste. 
+
+Depois do preprocessamento: 
+ quas numer ano banh assust esta afast princip balneari uruguai fronteir oest
+
+
+--- Célula 11, saída 2 ---
+[nltk_data] Downloading package stopwords to /home/joao-
+[nltk_data]     lucas/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package rslp to /home/joao-lucas/nltk_data...
+[nltk_data]   Package rslp is already up-to-date!
+
+
+--- Célula 13, saída 0 ---
+
+
+Primeira amostra
+['stf', 'podera', 'anular', 'decisao', 'do', 'embusteiro', 'trapalhao', 'impeachment', 'nao', 'sera', 'anulado', 'deputado', 'carlos', 'sampaio', 'disse', 'que', 'oposicao', 'ira', 'entrar', 'imediatamente', 'com', 'um', 'mandado', 'de', 'seguranca', 'no', 'stf', 'contra', 'decisao', 'de', 'waldir', 'maranhao', 'que', 'tenta', 'anular', 'votacao', 'do', 'impeachment', 'de', 'dilma', 'sampaio', 'disse', 'que', 'essa', 'uma', 'decisao', 'maluca', 'estapafurdia', 'ele', 'quer', 'anular', 'unilateralnente', 'um', 'ato', 'juridico', 'finalizado', 'pela', 'camara', 'em', 'plenario', 'em', 'rito', 'definido', 'pelo', 'supremo', 'lider', 'do', 'dem', 'pauderney', 'avelino', 'dem', 'am', 'disse', 'que', 'waldir', 'maranhao', 'nao', 'tem', 'capacidade', 'de', 'anular', 'qualquer', 'ato', 'que', 'ja', 'passou', 'pela', 'camara', 'quero', 'tranquilizar', 'populacao', 'porque', 'esse', 'ato', 'nao', 'ira', 'prosperar', 'disse', 'lider', 'do', 'dem', 'presidente', 'do', 'senado', 'renan', 'calheiros', 'podera', 'nao', 'receber', 'essa', 'acao', 'esdruxula', 'maluca', 'de', 'waldir', 'maranhao']
+
+
+--- Célula 15, saída 0 ---
+Note: you may need to restart the kernel to use updated packages.
+
+
+--- Célula 15, saída 1 ---
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+
+
+--- Célula 15, saída 2 ---
+
+Tamanho do vocabulário do modelo:  80782
+
+
+--- Célula 17, saída 0 ---
+('juridico', 0.7042257785797119)
+('economico', 0.6906896829605103)
+('ideologico', 0.6417044401168823)
+('unico', 0.6371291875839233)
+('partidario', 0.6127830147743225)
+('financeiro', 0.5942599177360535)
+('inimigo', 0.590333878993988)
+('eleitor', 0.5869652032852173)
+('construtivo', 0.5823372006416321)
+('corrupto', 0.5817165374755859)
+
+
+--- Célula 19, saída 0 ---
+[-1.04708217e-01 -9.22965556e-02 -1.90992951e-02 -6.08452633e-02
+  5.61543822e-01  4.47359800e-01 -6.49319410e-01  8.52973104e-01
+  1.28612192e-02  1.02419719e-01 -1.08073451e-01 -4.28056002e-01
+  8.03692162e-01 -1.48370102e-01  6.96699992e-02  1.07403375e-01
+ -7.47937620e-01 -9.90067497e-02  2.47551918e-01 -4.05809730e-01
+ -1.66673865e-02  3.61876492e-03  2.61716574e-01  4.69973654e-01
+  2.90861368e-01 -3.66935313e-01  4.46139038e-01 -8.93203080e-01
+  1.80019215e-01 -4.95220460e-02 -1.13121819e+00  6.01601958e-01
+  3.80664289e-01 -1.42585814e-01  1.28107607e-01 -2.45800570e-01
+  7.33769000e-01  2.69670337e-01  1.77399918e-01 -8.90813231e-01
+ -1.58966452e-01  4.95878980e-02  1.28459558e-01  4.95971262e-01
+  5.41956067e-01 -5.72248325e-02 -5.82697213e-01  9.48342830e-02
+  4.80088234e-01 -3.74069452e-01 -2.01723188e-01 -2.35613063e-01
+ -2.66586840e-02  2.04421803e-01  2.03784239e-02 -2.48077899e-01
+ -4.51947361e-01 -2.65979350e-01 -7.58137345e-01 -3.34218770e-01
+ -7.05582142e-01  5.73875248e-01  3.71609509e-01 -2.42797583e-01
+ -5.44475377e-01 -1.45061269e-01 -5.59864283e-01  2.50845492e-01
+  8.43925253e-02  6.48216605e-01  4.00662512e-01  9.32365417e-01
+ -1.12424794e-04 -1.10901892e-01  3.06725383e-01 -5.47262430e-01
+  7.08595812e-01 -4.56223011e-01 -4.90441434e-02  1.96822837e-01
+  6.46253526e-01 -1.80465286e-03 -1.91208914e-01 -5.30761421e-01
+ -7.84044206e-01  3.28458220e-01 -2.71181576e-02  6.53967977e-01
+ -3.67392838e-01  4.49380219e-01  2.01278299e-01 -8.79806131e-02
+ -1.43075854e-01  8.20908189e-01  4.43184465e-01 -7.84366503e-02
+ -4.04589891e-01 -2.27097571e-02  2.19016120e-01 -5.15389264e-01
+ -9.87275124e-01  6.72272503e-01  1.04328535e-01 -1.41753525e-01
+  5.16265690e-01 -1.92410797e-01 -2.94902865e-02 -1.92060113e-01
+  4.53594148e-01 -1.20502666e-01  2.40042787e-02 -3.04557323e-01
+  2.02258155e-01 -1.68829247e-01  8.43138248e-02 -1.17599368e+00
+ -4.34420295e-02 -9.29200649e-01 -1.65964097e-01 -7.28805125e-01
+  2.05508873e-01  4.31048065e-01 -3.68809521e-01 -6.66335076e-02
+ -1.60829008e-01  3.25146206e-02  1.25941038e-01 -1.31523088e-01
+  4.64116007e-01 -3.04856338e-02  1.74560115e-01  6.96002364e-01
+ -6.21703625e-01 -5.92129111e-01 -6.49946094e-01  6.47107422e-01
+ -1.86986119e-01 -9.35629010e-01  1.49564445e-01 -1.12435865e+00
+  6.24909818e-01 -7.59991050e-01  3.50448906e-01  3.85000259e-01
+ -1.13245748e-01 -3.07888359e-01  1.91881388e-01  4.61385190e-01
+  1.94859654e-01 -8.30420375e-01  1.16195238e+00  3.14106286e-01
+ -7.42367804e-01  1.52978510e-01 -3.53151500e-01 -3.92758131e-01
+  6.03284478e-01  7.31883168e-01 -4.46235180e-01  1.11554433e-02
+  4.24845546e-01  6.59337878e-01 -6.80393398e-01 -1.34468526e-01
+ -6.06837153e-01 -1.64268181e-01  6.60205856e-02  1.38340384e-01
+ -3.26185115e-02 -3.88580799e-01 -1.16973996e-01  3.45681101e-01
+ -3.01016569e-01  1.05879471e-01  5.82055867e-01  2.51996338e-01
+  1.78756937e-01  9.07715797e-01  4.16559689e-02  5.26616395e-01
+ -1.28252721e+00  2.95540035e-01 -2.33419746e-01 -9.90088135e-02
+ -2.76943743e-01  5.99365056e-01  3.04853290e-01 -5.93614101e-01
+  3.82378727e-01  2.30376095e-01  8.30861270e-01  1.72537073e-01
+  1.24412015e-01 -3.88797313e-01  3.55118334e-01  4.50001240e-01
+ -3.77459675e-01  1.57977343e-01  9.00910124e-02 -5.72445452e-01]
+
+
+--- Célula 21, saída 0 ---
+[[-0.10565846 -0.11931019  0.27075595 ... -0.09802768 -0.06715885
+  -0.24121931]
+ [-0.1640993   0.01996373  0.19905439 ... -0.17335236 -0.01974336
+  -0.34751606]
+ [-0.23556797 -0.14304723  0.22238487 ... -0.19637373 -0.01221322
+  -0.31694233]
+ ...
+ [-0.20750573 -0.0395024   0.3063615  ... -0.3018917   0.01338278
+  -0.31184396]
+ [-0.15172549 -0.08603189  0.26441756 ... -0.16106153  0.0851481
+  -0.04357702]
+ [-0.26095802 -0.06885421  0.3319565  ... -0.26367596  0.00475002
+  -0.20012125]]
+(7200, 200)
+
+
+--- Célula 23, saída 0 ---
+Defaulting to user installation because normal site-packages is not writeable
+Collecting scikit-learn
+  Downloading scikit_learn-1.9.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (11 kB)
+Requirement already satisfied: numpy>=1.24.1 in /usr/lib/python3/dist-packages (from scikit-learn) (1.26.4)
+Requirement already satisfied: scipy>=1.10.0 in /usr/lib/python3/dist-packages (from scikit-learn) (1.11.4)
+Requirement already satisfied: joblib>=1.4.0 in /home/joao-lucas/.local/lib/python3.12/site-packages (from scikit-learn) (1.5.3)
+Collecting narwhals>=2.0.1 (from scikit-learn)
+  Using cached narwhals-2.22.1-py3-none-any.whl.metadata (15 kB)
+Collecting threadpoolctl>=3.5.0 (from scikit-learn)
+  Using cached threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+Downloading scikit_learn-1.9.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (9.1 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m9.1/9.1 MB[0m [31m7.3 MB/s[0m eta [36m0:00:00[0m00:01[0m00:01[0m
+[?25hUsing cached narwhals-2.22.1-py3-none-any.whl (454 kB)
+Using cached threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+Installing collected packages: threadpoolctl, narwhals, scikit-learn
+Successfully installed narwhals-2.22.1 scikit-learn-1.9.0 threadpoolctl-3.6.0
+Note: you may need to restart the kernel to use updated packages.
+
+
+ Pentágono diz que Guerra Mundial é inevitável e quase garantida: "Será rápida e letal".  "Um conflito em um futuro próximo será letal e rápido [...] e não conseguiremos cronometrá-lo".  O Major-General William Hix disse: "O número de mortos poderá aumentar exponencialmente. A velocidade dos acontecimentos poderão ultrapassar nossa capacidade humana de acompanhá-la." O comandante da Marinha Gen Joseph Dunford, declarou que os EUA devem "declarar guerra à Síria e Rússia", de modo que uma "zona de exclusão aérea" sobre a Síria poderá ser imposta à força. A Coreia do Norte também será responsável por desencadear um conflito com mísseis nucleares. Hix encerrou dizendo que os exércitos da China e da Rússia estão crescendo e o Pentágono está se preparando para a violência em uma escala que o Exército dos Estados Unidos não testemunha desde a Guerra da Coreia, travada entre os anos de 1950 e 1953. fonte: The Sun
+
+
+ Navio de guerra da China dispara mísseis na península norte-coreana.  A China, oficialmente a maior aliada da Coreia do Norte, informou que uma guerra contra Kim Jon-un pode acontecer "a qualquer momento".  A amizade com o país do déspota parece estar com os dias contados. Tropas chinesas com milhares de soldados foram filmadas recentemente se dirigindo para a fronteira coreana. Na manhã da última segunda-feira (25), o navio de guerra Xining (da Marinha lançou) suas armas pela primeira vez no Mar Amarelo, localizado entre a China e a península coreana, reforçando um treinamento ostensivo enquanto atirava mísseis nas águas. Xining possui um arsenal mortal de armas projetadas para missões, entre elas defesa aérea e guerra submarina. O oficial de supervisão da frota da Marinha Chinesa, Xiang Zhihong, disse: "É um exercício de "fogo real" que está propiciando aos oficiais e marinheiros a oportunidade de disparar artilharia, aperfeiçoar técnicas e adquirir mais experiência. Temos que estar prontos para qualquer imprevisto"
+
+
+ Empresa de inteligência americana alerta: "O mundo deve estar preparado para uma nova guerra".  O fundador da empresa de inteligência norte-americana Stratfor, George Friedman, disse em entrevista à publicação da Business Insider que o mundo deve estar preparado para uma nova grande guerra.  De acordo com Friedman, não houve um único século na história mundial sem houvesse uma guerra que "colocasse em choque toda a ordem mundial". "A Guerra dos Sete Anos na Europa, as guerras napoleônicas do século XIX, as grandes guerras mundiais  cada século teve um conflito específico. "Quer apostar que neste século não haverá algo? Aceitarei", disse o analista de inteligência. Friedman explicou como começam as tais guerras sistêmicas. Quando países como a Alemanha, Rússia e China entram em decadência, o seu lugar é ocupado por outros. O perigo desta situação é que os novos países "ainda não atingiram o equilíbrio". "Em 1871, foi a reunificação da Alemanha que causou um "inferno". No início do século XX, o Japão aumentou o seu poderio e depois tornou-se em um caos", exemplificou. "Agora também observamos uma outra mudança sistêmica. Estejam preparados para uma guerra!", concluiu Friedman. Na sua opinião, a mesma situação descrita de substituição da liderança de uns países por outros não é perigosa. O que é perigoso é a posição que os novos países assumem. Friedman explica que os territórios principais onde podem ser iniciados conflitos são o Japão, a Polônia e a Turquia. São os países que provavelmente substituirão as potências que estão perdendo a sua influência. Assim, Friedman prediz conflitos no Oriente Médio e na Europa Oriental, além de uma guerra marítima entre o Japão e os EUA. Ao mesmo tempo, na sua opinião, há pequena probabilidade de um país usar armas nucleares contra o inimigo. Seria a Coréia do Norte? libertar.in
+
+
+--- Célula 25, saída 0 ---
+Downloading...
+From (original): https://drive.google.com/uc?id=1dAbEJ0psG-r4lbxAuGOYIv5Vu3mQj6PY
+From (redirected): https://drive.google.com/uc?id=1dAbEJ0psG-r4lbxAuGOYIv5Vu3mQj6PY&confirm=t&uuid=0d3e85d2-7e79-4665-945f-856dc0d8bcc9
+To: /home/joao-lucas/Área de trabalho/Projetos/IC/Codigos/dados/skip_s50.zip
+100%|██████████| 163M/163M [00:06<00:00, 25.7MB/s] 
+
+
+--- Célula 25, saída 1 ---
+'dados/skip_s50.zip'
+
+--- Célula 27, saída 0 ---
+Arquivo descompactado com sucesso!
+
+
+--- Célula 29, saída 0 ---
+Tamanho do vocabulário do modelo:  929605
+
+
+--- Célula 31, saída 0 ---
+('caminhão', 0.9377034306526184)
+('furgão', 0.8873354196548462)
+('camionete', 0.8857896327972412)
+('bagageiro', 0.874361515045166)
+('caminhã', 0.8735042214393616)
+('porta-malas', 0.8730326890945435)
+('carrro', 0.8680179715156555)
+('caminhã£o', 0.8669916987419128)
+('caminhãozinho', 0.8668836951255798)
+('caminhonete', 0.8657148480415344)

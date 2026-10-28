@@ -1,0 +1,287 @@
+--- Célula 6, saída 0 ---
+(7200, 30)
+Index(['id', 'texto', 'classe', 'rotulo', 'autor', 'link', 'categoria',
+       'data_publicacao', 'numero_tokens', 'numero_palavras_sem_pontuacao',
+       'numero_types', 'numero_links', 'numero_maiusculas', 'numero_verbos',
+       'numero_verbos_subjuntivo_imperativo', 'numero_substantivos',
+       'numero_adjetivos', 'numero_adverbios', 'numero_verbos_modais',
+       'numero_pronomes_singular_primeira_segunda_pessoa',
+       'numero_pronomes_plural_primeira_pessoa', 'numero_pronomes',
+       'pausalidade', 'numero_caracteres', 'tamanho_medio_sentenca',
+       'tamanho_medio_palavra', 'percentual_erros_ortograficos', 'emotividade',
+       'diversidade', 'data_publicacao_original'],
+      dtype='str')
+
+
+--- Célula 7, saída 0 ---
+   id                                              texto classe  rotulo autor  \
+0   1  Kátia Abreu diz que vai colocar sua expulsão e...   fake       1   mrk   
+1   2  Blog esquerdista dá a entender que reclamar de...   fake       1  None   
+2   3  Alckmin diz que por ele PSDB desembarca, mas...   fake       1  None   
+3   4  Cara de pau não tem limites: Zé Celso aciona M...   fake       1  None   
+4   5  Temer resolve o problema de Luislinda: liberd...   fake       1  None   
+
+                                                link            categoria  \
+0  https://ceticismopolitico.com/2017/11/30/katia...             politica   
+1  https://ceticismopolitico.com/2017/11/28/blog-...  sociedade_cotidiano   
+2  https://ceticismopolitico.com/2017/11/28/alckm...             politica   
+3  https://ceticismopolitico.com/2017/11/28/cara-...             politica   
+4  https://ceticismopolitico.com/2017/11/27/temer...             politica   
+
+  data_publicacao  numero_tokens  numero_palavras_sem_pontuacao  ...  \
+0             NaT            211                            185  ...   
+1             NaT            356                            300  ...   
+2             NaT            274                            224  ...   
+3             NaT            319                            291  ...   
+4             NaT            162                            133  ...   
+
+   numero_pronomes_plural_primeira_pessoa  numero_pronomes  pausalidade  \
+0                                       0               26      2.00000   
+1                                       0               30      3.29412   
+2                                       0               14      3.57143   
+3                                       0               23      2.33333   
+4                                       0               12      2.63636   
+
+   numero_caracteres  tamanho_medio_sentenca  tamanho_medio_palavra  \
+0                815                 14.2308                4.40541   
+1               1321                 17.6471                4.40333   
+2               1075                 16.0000                4.79911   
+3               1341                 24.2500                4.60825   
+4                654                 12.0909                4.91729   
+
+   percentual_erros_ortograficos  emotividade  diversidade  \
+0                       0.000000     0.263158     0.648649   
+1                       0.013333     0.277372     0.623333   
+2                       0.000000     0.262136     0.669643   
+3                       0.003436     0.182540     0.635739   
+4                       0.000000     0.303571     0.721804   
+
+   data_publicacao_original  
+0                2017-11-30  
+1                2017-11-28  
+2                2017-11-28  
+3                2017-11-28  
+4                2017-11-27  
+
+[5 rows x 30 columns]
+
+--- Célula 8, saída 0 ---
+classe
+fake    3600
+true    3600
+Name: count, dtype: int64
+
+--- Célula 9, saída 0 ---
+Tipo da coluna: datetime64[us]
+Datas inválidas ou ausentes: 3531
+Data mais antiga: 0201-01-06 00:00:00
+Data mais recente: 2018-03-25 00:00:00
+
+Quantidade de notícias por ano:
+data_publicacao
+201.0        3
+2012.0       1
+2013.0       1
+2014.0       2
+2015.0     237
+2016.0    1585
+2017.0    1545
+2018.0     295
+dtype: int64
+
+Exemplos de datas inválidas ou ausentes:
+
+
+--- Célula 9, saída 1 ---
+    id classe data_publicacao_original
+0    1   fake               2017-11-30
+1    2   fake               2017-11-28
+2    3   fake               2017-11-28
+3    4   fake               2017-11-28
+4    5   fake               2017-11-27
+5    6   fake               2017-11-27
+6    7   fake               2017-11-27
+7    8   fake               2017-11-25
+8    9   fake               2017-11-25
+9   10   fake               2017-11-24
+10  11   fake               2017-11-24
+11  12   fake               2017-11-24
+12  13   fake               2017-11-24
+13  14   fake               2017-11-24
+14  15   fake               2017-11-24
+15  16   fake               2017-11-23
+16  17   fake               2017-09-14
+17  18   fake               2017-09-11
+18  19   fake               2017-09-08
+19  20   fake               2017-09-08
+
+--- Célula 12, saída 0 ---
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.9s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.7s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.4s finished
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.8s finished
+
+
+--- Célula 17, saída 0 ---
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.2s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.7s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.5s finished
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/.venv/lib/python3.14/site-packages/sklearn/utils/deprecation.py:71: FutureWarning: Class PassiveAggressiveClassifier is deprecated; this is deprecated in version 1.8 and will be removed in 1.10. Use `SGDClassifier(loss='hinge', penalty=None, learning_rate='pa1', eta0=1.0)` instead.
+  warnings.warn(msg, category=FutureWarning)
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.8s finished
+
+
+--- Célula 17, saída 1 ---
+'\nclassifier = MultinomialNB()\npred = cross_val_predict(classifier, X_inicial, y_inicial, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier2 = SGDClassifier()\npred2 = cross_val_predict(classifier2, X_inicial, y_inicial, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier3 = Perceptron()\npred3 = cross_val_predict(classifier3, X_inicial, y_inicial, cv=cvC, verbose=True, n_jobs=2)\n\nclassifier4 = PassiveAggressiveClassifier()\npred4 = cross_val_predict(classifier4, X_inicial, y_inicial, cv=cvC, verbose=True, n_jobs=2)\n'
+
+--- Célula 20, saída 0 ---
+'\nPerceptron_offline\n\nPassiveAggressive_offline\n\nMultinomialNB_offline\n\nSGD_offline\n'
+
+--- Célula 21, saída 0 ---
+                                             Noticia       Data  Classe
+0  bomba lira fraudar o votação brasília explodir... 2021-08-17       0
+1  o whatsapp liberar quinta-feira atualização ap... 2020-10-23       1
+2  debater propor o cidade o campanha prefeitura ... 2020-10-27       1
+3  o alesp assembleia legislativo paulo aprovar h... 2021-02-10       1
+4  “ fauci aprovar o hidroxicloroquina haver ano ... 2020-08-11       0
+
+
+--- Célula 23, saída 0 ---
+                                                 Noticia       Data  Classe
+0      bomba lira fraudar o votação brasília explodir... 2021-08-17       0
+1      o whatsapp liberar quinta-feira atualização ap... 2020-10-23       1
+2      debater propor o cidade o campanha prefeitura ... 2020-10-27       1
+3      o alesp assembleia legislativo paulo aprovar h... 2021-02-10       1
+4      “ fauci aprovar o hidroxicloroquina haver ano ... 2020-08-11       0
+...                                                  ...        ...     ...
+11897  o encontrar reunir o presidente jair bolsonaro... 2020-05-19       1
+11898  o reabertura complexo parque disney orlar defi... 2020-04-29       1
+11899  publicação circular rede social pedir o minist... 2019-11-01       0
+11900  o juiz wauner batista ferreiro machadar 3ª var... 2020-07-20       1
+11901  o empresário luciano hang dono havan doar moto... 2019-10-29       0
+
+[11902 rows x 3 columns]
+
+
+--- Célula 26, saída 0 ---
+PassiveAggressiveClassifier()
+
+--- Célula 27, saída 0 ---
+(0.898656561582708, 0.7755399427530575, 0.9646747587924058, 0.9970438602583692)
+(0.9027549591906812, 0.7891412304943171, 0.9884008394646693, 1.0)
+
+
+--- Célula 28, saída 0 ---
+Para o ano de 2020: 
+
+mês: 1 (0.28585829493087556, 0.30952380952380953, 0.30952380952380953, 0.30952380952380953)
+mês: 2 (0.5066957334163812, 0.3246753246753247, 0.5491224389902805, 0.49743589743589745)
+mês: 3 (0.6029329997219905, 0.37658227848101267, 0.70378224158538, 0.6630247470033797)
+mês: 4 (0.756743295019157, 0.4040735873850197, 0.8490310307930091, 0.844234249706065)
+mês: 5 (0.6379675179049411, 0.3895800933125972, 0.8536406252378126, 0.8536333177013)
+mês: 6 (0.6540770507272313, 0.44695378151260506, 0.8717720129135871, 0.8657161803713528)
+mês: 7 (0.6404879079917709, 0.5191234971220304, 0.8669716028206594, 0.8783659842981877)
+mês: 8 (0.6358745094976865, 0.5528587075575028, 0.8704107157266199, 0.8789760940432678)
+mês: 9 (0.6239828591834305, 0.5504712789359439, 0.8802655677655677, 0.888902001510574)
+mês: 10 (0.5834204319289436, 0.5122290713859614, 0.8728738311273898, 0.8876771325368158)
+mês: 11 (0.731759097919045, 0.6306446964419038, 0.8543038486224357, 0.8957406572838793)
+mês: 12 (0.7576244075479717, 0.6811853143043904, 0.898189557239614, 0.9073328752331403)
+
+
+--- Célula 29, saída 0 ---
+Para o ano de 2021: 
+
+mês: 1 (0.691037548622688, 0.6459579180509413, 0.9007201952264746, 0.9248457477259716)
+mês: 2 (0.7482190095722637, 0.7118024825833391, 0.9141891891891891, 0.9309782608695653)
+mês: 3 (0.6871362506685122, 0.6902290797705943, 0.9139462042687849, 0.9319434113254906)
+mês: 4 (0.687199604184337, 0.7419444037801526, 0.9289025543992432, 0.9627647714604236)
+mês: 5 (0.7371664990010911, 0.750245715132013, 0.9360389294403892, 0.9432905733953134)
+mês: 6 (0.32782792394853083, 0.36763575819672134, 0.6178813544083005, 0.7171504369538078)
+mês: 7 (0.12290502793296089, 0.2764976958525346, 0.4766666666666667, 0.4919093851132686)
+mês: 8 (0.21951219512195122, 0.30935251798561153, 0.49206349206349204, 0.49473684210526314)
+
+
+--- Célula 30, saída 0 ---
+<Figure size 1200x1000 with 1 Axes>
+
+--- Célula 30, saída 1 ---
+       month  Perceptron  SGDClassifier  PassiveAggressiveClassifier  \
+0   Nov 2019    0.488400       0.377800                     0.487000   
+1   Dec 2019    0.376500       0.332900                     0.374500   
+2   Jan 2020    0.309524       0.309524                     0.309524   
+3   Feb 2020    0.549122       0.324675                     0.497436   
+4   Mar 2020    0.703782       0.376582                     0.663025   
+5   Apr 2020    0.849031       0.404074                     0.844234   
+6   May 2020    0.853641       0.389580                     0.853633   
+7   Jun 2020    0.871772       0.446954                     0.865716   
+8   Jul 2020    0.866972       0.519123                     0.878366   
+9   Aug 2020    0.870411       0.552859                     0.878976   
+10  Sep 2020    0.880266       0.550471                     0.888902   
+11  Oct 2020    0.872874       0.512229                     0.887677   
+12  Nov 2020    0.854304       0.630645                     0.895741   
+13  Dec 2020    0.898190       0.681185                     0.907333   
+
+    MultinomialNB  
+0        0.464300  
+1        0.593300  
+2        0.285858  
+3        0.506696  
+4        0.602933  
+5        0.756743  
+6        0.637968  
+7        0.654077  
+8        0.640488  
+9        0.635875  
+10       0.623983  
+11       0.583420  
+12       0.731759  
+13       0.757624  
+
+Pickle salvo em: dfScores_feedback_2020.pkl
+Figura salva em: grafico_feedback_2020.png

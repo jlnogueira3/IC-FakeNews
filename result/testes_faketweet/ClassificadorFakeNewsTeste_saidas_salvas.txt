@@ -1,0 +1,158 @@
+--- Célula 2, saída 0 ---
+classificacao
+fake    188
+true     91
+Name: count, dtype: int64
+
+--- Célula 3, saída 0 ---
+/home/joao-lucas-nogueira/Área de trabalho/Projetos/IC/Codigos/dados/FakeTweet.Br
+
+
+--- Célula 4, saída 0 ---
+     Unnamed: 0            id                  subject  \
+0             0  1.124513e+18          macaco marielle   
+1             1  1.124049e+18          macaco marielle   
+2             5  1.119295e+18          macaco marielle   
+3            10  1.114583e+18          macaco marielle   
+4            11  1.113246e+18          macaco marielle   
+..          ...           ...                      ...   
+274        1345  1.118650e+18  jair time personalidade   
+275        1405  1.090221e+18  jair time personalidade   
+276        1480  1.073590e+18  jair time personalidade   
+277        1499  1.072787e+18  jair time personalidade   
+278        2011  1.125022e+18  bicarbonato cura câncer   
+
+                                                  text classificacao  \
+0    Marielle >BANDIDOS Narco-traficantes-Milícias ...          fake   
+1    Bem, as últimas noticias a respeito disso que ...          fake   
+2    @jornalnacional convivi com notícias da Mariel...          fake   
+3    O Cesari Battisti confessou seus crimes, a esq...          fake   
+4    [Agência Lupa] Verificamos: É falso que Thiago...          true   
+..                                                 ...           ...   
+274  Por “ruptura com a corrupção”, apenas um brasi...          fake   
+275  Pessoal, a revista americana TIME incluiu Jair...          fake   
+276  QUE COMECE O MIMIMI DOS BOLSOBURROS. Jair Bols...          true   
+277  Circula nas redes sociais uma foto da capa da ...          true   
+278  Circulam pelas redes sociais publicações que a...          true   
+
+                 date  retweets  favorites  \
+0     2019-05-04 0:16         0          0   
+1    2019-05-02 17:33         0          0   
+2    2019-04-19 14:41         0          0   
+3    2019-04-06 14:36         0          0   
+4    2019-04-02 22:04         1          0   
+..                ...       ...        ...   
+274  2019-04-17 20:00         0          0   
+275   2019-01-29 9:10         2          1   
+276  2018-12-14 11:47         0          1   
+277   2018-12-12 6:37         0          1   
+278  2019-05-05 10:00         9         36   
+
+                                             permalink  
+0    https://twitter.com/MRTT_/status/1124513050218...  
+1    https://twitter.com/EvaristoKlebber/status/112...  
+2    https://twitter.com/luiztemper/status/11192950...  
+3    https://twitter.com/GrimoaldoL/status/11145825...  
+4    https://twitter.com/antmarobel/status/11132459...  
+..                                                 ...  
+274  https://twitter.com/kohavitt/status/1118650345...  
+275  https://twitter.com/alcamorim/status/109022062...  
+276  https://twitter.com/jorgetemer/status/10735903...  
+277  https://twitter.com/juidsonjoc/status/10727874...  
+278  https://twitter.com/agencialupa/status/1125022...  
+
+[279 rows x 9 columns]
+
+--- Célula 5, saída 0 ---
+classificacao
+fake    188
+true     91
+Name: count, dtype: int64
+
+--- Célula 6, saída 0 ---
+text
+Um dos sites anti-hoax desmentiu o boato de que o MST teria roubado vítimas do crime ambiental em Brumadinho . É muito mais fácil o MST ter AJUDADO as vítimas com doações de produtos agrícolas do que ter roubado. Quem roubou foi a Vale privatizada.                                                                                                                     2
+Marielle >BANDIDOS Narco-traficantes-Milícias pisou na bola PCC >Mandante do crime #Brazão do PT #OrganizaçãoCriminosa Assassinada por THIAGO- MACACO Midia para de acusar quem destruiu a sonhada #GRANDEPATRIA @ECantanhede @CarvalhosaMo @CarlosBolsonaro @RenovMidia @roxmo @SITEFCS pic.twitter.com/8HTb0VVmj8                                                          1
+Bem, as últimas noticias a respeito disso que o verdadeiro assassino de Marielle não é aqueles acusados senão um elemento de codinome  Macaco ". Ou seja, não colou a relação Bolsonaro x Marielle . Reveja suas fontes."                                                                                                                                                    1
+@jornalnacional convivi com notícias da Marielle durante 3 meses quase todos os dias. Porque pararam as reportagens? Só porque se descobriu que seu matador foi Thiago macaco ? Negro favelado e ligado ao tráfico? Bonemer vc é o supra sumo do ridículo .                                                                                                                  1
+O Cesari Battisti confessou seus crimes, a esquerda calou; o assassino de MARIELLE foi descoberto, a esquerda se calou e agora o Luladrão confessou, a esquerda meteu a língua onde o macaco meu o caju. Demagogos, hipocritas e fariseus                                                                                                                                    1
+                                                                                                                                                                                                                                                                                                                                                                            ..
+Por “ruptura com a corrupção”, apenas um brasileiro aparece entre os ‘100 mais influentes’ da revista ‘ Time ’. QUEM É ESSA INFLUENTE PERSONALIDADE ? JAIR MESSIAS BOLSONARO. Tbm apareceram Trump e Netanyahu. https://www. jornaldacidadeonline.com.br/noticias/14195 /por-ruptura-com-a-corrupcao-um-brasileiro-aparece-entre-os-100-mais-influentes-da-revista-time …    1
+Pessoal, a revista americana TIME incluiu Jair Bolsonaro para concorrer à PERSONALIDADE DO ANO. A PETRALHADA descobriu antes e ele tem apenas 3% de “YES” e 97% de “NO”! Vamos virar este jogo? É simples clique aqui e siga até ver Jair Bolsonaro. https:// discover.apester.com/media/5be40171 3cea78c501552c1a … PARTICIPE!                                              1
+QUE COMECE O MIMIMI DOS BOLSOBURROS. Jair Bolsonaro não foi eleito Personalidade do Ano pela revista  Time " https:// noticias.uol.com.br/confere/ultima s-noticias/2018/12/14/bolsonaro-nao-foi-eleito-personalidade-do-ano-pela-revista-time.htm … via @UOLNoticias @UOL"                                                                                                  1
+Circula nas redes sociais uma foto da capa da revista Time com o presidente eleito Jair Bolsonaro como personalidade do ano. A imagem é #FAKE . A  Time " escolheu os jornalistas mortos e presos como "Pessoa do Ano" de 2018. - É. Parece que a campanha eleitoral continua..."                                                                                            1
+Circulam pelas redes sociais publicações que afirmam que o bicarbonato de sódio ajudaria na cura de câncer . Os conteúdos também dizem que o câncer é um fungo. Confira em: http:// bit.ly/2H07gIO . pic.twitter.com/xKNgOBPBAV                                                                                                                                              1
+Name: count, Length: 278, dtype: int64
+
+
+--- Célula 13, saída 0 ---
+((251, 7407), 251)
+
+--- Célula 15, saída 0 ---
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.1s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.9s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done   7 out of  10 | elapsed:    0.0s remaining:    0.0s
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished
+
+
+--- Célula 19, saída 0 ---
+LogisticRegression - Accuracy: 0.8565737051792829 , F1_Score: 0.8184667309546769  Precision : 0.8883647798742138  Recall : 0.792276247848537 
+ F1-Classe [0.90163934 0.73529412]
+SGDClassifier - Accuracy: 0.8446215139442231 , F1_Score: 0.8250245777102512  Precision : 0.8240661534074707  Recall : 0.8260183591508893 
+ F1-Classe [0.88358209 0.76646707]
+ComplementNB - Accuracy: 0.7450199203187251 , F1_Score: 0.611905682257441  Precision : 0.8392339544513457  Recall : 0.6175057372346529 
+ F1-Classe [0.83919598 0.38461538]
+RandomForestClassifier - Accuracy: 0.7928286852589641 , F1_Score: 0.7085045560121493  Precision : 0.8678760077842647  Recall : 0.6897948938611589 
+ F1-Classe [0.86528497 0.55172414]
+SVM - Accuracy: 0.8725099601593626 , F1_Score: 0.8415153906866615  Precision : 0.8989419424850786  Recall : 0.8163726333907056 
+ F1-Classe [0.91160221 0.77142857]
+
+
+--- Célula 24, saída 0 ---
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.2s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done   7 out of  10 | elapsed:    0.0s remaining:    0.0s
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.1s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    1.3s finished
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  10 out of  10 | elapsed:    0.0s finished
+
+
+--- Célula 29, saída 0 ---
+LogisticRegression - Accuracy: 0.8565737051792829 , F1_Score: 0.8593403461267826  Precision : 0.8682742128337984  Recall : 0.8601190476190477 
+ F1-Classe [0.8488746  0.86980609]
+SGDClassifier - Accuracy: 0.8446215139442231 , F1_Score: 0.8250245777102512  Precision : 0.8888888888888888  Recall : 0.8869047619047619 
+ F1-Classe [0.88271605 0.8908046 ]
+ComplementNB - Accuracy: 0.7450199203187251 , F1_Score: 0.611905682257441  Precision : 0.8181818181818181  Recall : 0.7142857142857143 
+ F1-Classe [0.88271605 0.8908046 ]
+RandomForestClassifier - Accuracy: 0.7928286852589641 , F1_Score:  Precision : 0.8265433058622298  Recall : 0.7976190476190477 
+ F1-Classe [0.88271605 0.8908046 ]
+SVM - Accuracy: 0.8725099601593626 , F1_Score: 0.8415153906866615  Precision : 0.8504611330698286  Recall : 0.8392857142857143 
+ F1-Classe [0.88271605 0.8908046 ]
+
+
+--- Célula 30, saída 0 ---
+LogisticRegression - Accuracy: 0.8601190476190477 , F1_Score: 0.8593403461267826 
+ [0.8488746  0.86980609]
+SGDClassifier - Accuracy: 0.8869047619047619 , F1_Score: 0.8867603235419328 
+ [0.88271605 0.8908046 ]
+ComplementNB - Accuracy: 0.7142857142857143 , F1_Score: 0.6888888888888889 
+ [0.6        0.77777778]
+RandomForestClassifier - Accuracy: 0.7976190476190477 , F1_Score: 0.793035979564477 
+ [0.76223776 0.8238342 ]
+SVM - Accuracy: 0.8392857142857143 , F1_Score: 0.8379942140790742 
+ [0.82352941 0.85245902]
+
+
+--- Célula 32, saída 0 ---
