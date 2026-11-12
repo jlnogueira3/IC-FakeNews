@@ -396,6 +396,40 @@ def executar_experimento(
     return df_historico, metricas_mensais(df_historico)
 
 
+def salvar_graficos(mensal: pd.DataFrame, destino: Path) -> None:
+    """Gráficos comparáveis: mesmos meses e avaliação ANTES de treinar."""
+    import matplotlib.pyplot as plt
+
+    grupos = {
+        "f1_macro_sgd_logistico.png": [
+            "ponderado_temporal", "imediato_peso_constante",
+            "imediato_todas_noticias",
+        ],
+        "f1_macro_offline_quatro_modelos.png": [
+            "offline_Perceptron", "offline_PassiveAggressiveClassifier",
+            "offline_MultinomialNB", "offline_SGDClassifier",
+        ],
+        "f1_macro_imediato_quatro_modelos_corrigido.png": [
+            "imediato_Perceptron", "imediato_PassiveAggressiveClassifier",
+            "imediato_MultinomialNB", "imediato_SGDClassifier",
+        ],
+    }
+    for arquivo, nomes in grupos.items():
+        fatia = mensal[mensal["modelo"].isin(nomes)]
+        tabela = fatia.pivot(index="mes", columns="modelo", values="f1_macro")
+        tabela = tabela.reindex(columns=nomes)
+        ax = tabela.plot(marker="o", figsize=(12, 5))
+        ax.set_title("F1 macro por mês — predição antes do feedback")
+        ax.set_xlabel("Mês")
+        ax.set_ylabel("F1 macro")
+        ax.set_ylim(0, 1)
+        ax.grid(alpha=0.25)
+        ax.legend(loc="best", fontsize=8)
+        ax.figure.tight_layout()
+        ax.figure.savefig(destino / arquivo, dpi=160, bbox_inches="tight")
+        plt.close(ax.figure)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project-root", type=Path, default=PROJECT_ROOT)
@@ -406,6 +440,8 @@ def main() -> None:
     parser.add_argument("--max-validacao", type=int, default=256)
     parser.add_argument("--eta", type=float, default=0.05)
     parser.add_argument("--alpha-meta", type=float, default=10.0)
+    parser.add_argument("--sem-graficos", action="store_true",
+                        help="Não renderiza PNGs (dispensa matplotlib)")
     args = parser.parse_args()
     cfg = Config(
         inicio=args.inicio, janela_dias=args.janela_dias,
@@ -421,6 +457,8 @@ def main() -> None:
     destino.mkdir(parents=True, exist_ok=True)
     historico.to_csv(destino / "predicoes_e_pesos.csv", index=False)
     mensal.to_csv(destino / "metricas_mensais.csv", index=False)
+    if not args.sem_graficos:
+        salvar_graficos(mensal, destino)
     print(mensal.pivot(index="mes", columns="modelo", values="f1_macro").round(4))
     diferencas = historico.loc[~historico["reserva_validacao"], "peso_feedback"].dropna()
     print("Peso: média = %.6f, mínimo = %.6f, máximo = %.6f" % (
