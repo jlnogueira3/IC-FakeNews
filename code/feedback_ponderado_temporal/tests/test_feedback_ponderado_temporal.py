@@ -2,11 +2,17 @@
 
 Executar na raiz: python -m pytest code/feedback_ponderado_temporal/tests -q
 """
+import sys
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 from scipy import sparse
 
-from code.feedback_ponderado_temporal.feedback_ponderado_temporal import (
+# O diretório do projeto é chamado "code", nome também usado pela stdlib.
+# Importamos este script diretamente para evitar colisões de módulos.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from feedback_ponderado_temporal import (
     Config,
     converter_data,
     executar_experimento,
