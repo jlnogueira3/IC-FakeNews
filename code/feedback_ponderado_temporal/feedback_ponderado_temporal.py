@@ -26,9 +26,9 @@ import numpy as np
 import pandas as pd
 from scipy import sparse
 from scipy.special import expit
-from copy import deepcopy
 from sklearn.feature_extraction.text import HashingVectorizer
-from sklearn.linear_model import SGDClassifier
+from sklearn.linear_model import SGDClassifier, Perceptron, PassiveAggressiveClassifier
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 
@@ -203,11 +203,17 @@ def metricas_mensais(historico: pd.DataFrame) -> pd.DataFrame:
     dados = historico.copy()
     dados["mes"] = pd.to_datetime(dados["data"]).dt.to_period("M").astype(str)
     linhas = []
+    # Cada coluna de predição é avaliada sobre o MESMO conjunto de notícias.
     modelos = {
         "ponderado_temporal": "pred_ponderado",
         "imediato_peso_constante": "pred_peso_constante",
         "imediato_todas_noticias": "pred_imediato_total",
     }
+    for coluna in dados.columns:
+        if coluna.startswith("pred_offline_"):
+            modelos["offline_" + coluna[len("pred_offline_"):]] = coluna
+        elif coluna.startswith("pred_imediato_") and coluna != "pred_imediato_total":
+            modelos["imediato_" + coluna[len("pred_imediato_"):]] = coluna
     for mes, bloco in dados.groupby("mes", sort=True):
         y = bloco["rotulo"].to_numpy()
         for nome, coluna in modelos.items():
@@ -264,6 +270,7 @@ def executar_experimento(
         lowercase=True, ngram_range=(1, 2), n_features=cfg.n_features,
         alternate_sign=False, norm="l2",
     )
+    X_inicial_original = vetorizador.transform(textos_fakebr)
     X_inicial = vetorizar_com_intercepto(vetorizador, textos_fakebr)
     y_inicial = np.asarray(rotulos_fakebr, dtype=int)
     if X_inicial.shape[0] != len(y_inicial) or set(y_inicial) != {0, 1}:
@@ -279,6 +286,20 @@ def executar_experimento(
     ponderado = deepcopy(modelo_base)
     constante = deepcopy(modelo_base)
     imediato_total = deepcopy(modelo_base)
+
+    # Baselines do notebook original, sem mudanças de modelo ou vocabulário:
+    # default SGD usa hinge (não logistic); preservado para não confundir modelos.
+    fabricas = {
+        "Perceptron": Perceptron(random_state=cfg.random_state),
+        "PassiveAggressiveClassifier": PassiveAggressiveClassifier(random_state=cfg.random_state),
+        "MultinomialNB": MultinomialNB(),
+        "SGDClassifier": SGDClassifier(random_state=cfg.random_state),
+    }
+    offline = {
+        nome: estimador.fit(X_inicial_original, y_inicial)
+        for nome, estimador in fabricas.items()
+    }
+    imediato = {nome: deepcopy(modelo) for nome, modelo in offline.items()}
 
     # Cada referência: (data, linha_esparsa, classe).
     # Referências NUNCA entram em partial_fit(ponderado/constante).
@@ -299,6 +320,7 @@ def executar_experimento(
             X_val = None
             y_val = None
 
+        X_dia_original = vetorizador.transform(dados_dia["texto"])
         X_dia = vetorizar_com_intercepto(vetorizador, dados_dia["texto"])
         y_dia = dados_dia["rotulo"].to_numpy(dtype=int)
         posicoes = dados_dia["posicao_fluxo"].to_numpy(dtype=int)
@@ -308,6 +330,12 @@ def executar_experimento(
         pred_ponderado = ponderado.predict(X_dia)
         pred_constante = constante.predict(X_dia)
         pred_total = imediato_total.predict(X_dia)
+        pred_offline = {
+            nome: modelo.predict(X_dia_original) for nome, modelo in offline.items()
+        }
+        pred_imediato = {
+            nome: modelo.predict(X_dia_original) for nome, modelo in imediato.items()
+        }
 
         for k in range(len(dados_dia)):
             Xi = X_dia[k:k+1]
@@ -335,7 +363,7 @@ def executar_experimento(
             # Baseline ideal: feedback imediato com TODAS as notícias.
             imediato_total.partial_fit(Xi, [yi], classes=CLASSES, sample_weight=[1.0])
 
-            historico.append({
+            registro = {
                 "data": dia,
                 "posicao_fluxo": int(posicoes[k]),
                 "rotulo": yi,
@@ -347,7 +375,16 @@ def executar_experimento(
                 "pred_ponderado": int(pred_ponderado[k]),
                 "pred_peso_constante": int(pred_constante[k]),
                 "pred_imediato_total": int(pred_total[k]),
-            })
+            }
+            for nome in offline:
+                registro[f"pred_offline_{nome}"] = int(pred_offline[nome][k])
+                registro[f"pred_imediato_{nome}"] = int(pred_imediato[nome][k])
+            historico.append(registro)
+
+        # Os quatro modelos imediatos recebem TODO o dia, mas só depois da
+        # predição de todas as notícias desse dia (sem vazamento no F1).
+        for modelo in imediato.values():
+            modelo.partial_fit(X_dia_original, y_dia, classes=CLASSES)
 
         # A validação do dia atual só poderá ser usada nos dias seguintes.
         for k in np.flatnonzero(validacao_reservada):
@@ -385,6 +422,10 @@ def main() -> None:
     historico.to_csv(destino / "predicoes_e_pesos.csv", index=False)
     mensal.to_csv(destino / "metricas_mensais.csv", index=False)
     print(mensal.pivot(index="mes", columns="modelo", values="f1_macro").round(4))
+    diferencas = historico.loc[~historico["reserva_validacao"], "peso_feedback"].dropna()
+    print("Peso: média = %.6f, mínimo = %.6f, máximo = %.6f" % (
+        diferencas.mean(), diferencas.min(), diferencas.max()
+    ))
     print(f"Resultados salvos em: {destino}")
 
 
