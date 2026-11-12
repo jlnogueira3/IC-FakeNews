@@ -40,7 +40,7 @@ Os arquivos esperados no diretório da IC:
 Instalar dependências:
 
 ```bash
-python -m pip install numpy scipy pandas scikit-learn openpyxl pytest
+python -m pip install numpy scipy pandas scikit-learn openpyxl matplotlib pytest
 ```
 
 Rodar da raiz do projeto:
@@ -61,6 +61,11 @@ Os resultados são salvos em `result/feedback_ponderado_temporal/`:
 
 - `predicoes_e_pesos.csv`: data, índice, rótulo, previsões antes do treino, seleção para validação, tamanho da referência, meta-gradiente e peso utilizado.
 - `metricas_mensais.csv`: `accuracy`, `precision_macro`, `recall_macro` e `f1_macro` para os 11 cenários, com zero_division=0.
+- `f1_macro_sgd_logistico.png`: comparação controlada do ponderado temporal contra duas variantes imediatas do **mesmo** SGD logístico.
+- `f1_macro_offline_quatro_modelos.png`: quatro classificadores estáticos com configurações originais.
+- `f1_macro_imediato_quatro_modelos_corrigido.png`: os mesmos quatro classificadores com avaliação prequential sem vazamento.
+
+Se não houver matplotlib, use `--sem-graficos` para gerar somente os CSVs.
 
 ## Limitações e próximos experimentos
 
