@@ -13,7 +13,8 @@ Implementação experimental, em arquivo separado, para a IC de detecção de fa
 - **Referência temporal:** os últimos 90 dias de notícias reservadas **de datas estritamente anteriores** ao dia avaliado, até 256 exemplos. Se houver menos de 20 exemplos ou faltar alguma classe, o peso permanece em 0,5 (cold start).
 - **Disponibilização do rótulo:** o protocolo simula feedback verdadeiro imediato ao final da predição. Referências do dia só ingressam na validação após o processamento inteiro desse dia.
 - **Meta-gradiente:** cada exemplo não reservado recebe peso `clip(0.5 - alpha_meta * dL_val/dw, 0.05, 1)`, com gradiente calculado no passo virtual sobre a validação recente. O `partial_fit` aplica o peso; o estimador não calcula pesos sozinho.
-- **Baselines:** (i) `imediato_peso_constante`, mesmo subconjunto de treino que o modelo ponderado e `sample_weight=0.5`; (ii) `imediato_todas_noticias`, referência otimista que aprende com todas as notícias, inclusive as reservadas, e usa peso 1.
+- **Baselines comparáveis ao ponderado:** (i) `imediato_peso_constante` utiliza o mesmo subconjunto de treino e `sample_weight=0.5`; (ii) `imediato_todas_noticias` aprende com todas as notícias, inclusive reservadas, e usa peso 1. Ambos usam o **mesmo SGD com perda logística** do modelo ponderado.
+- **Baselines históricos reavaliados sem vazamento:** `offline_{Perceptron,PassiveAggressiveClassifier,MultinomialNB,SGDClassifier}` (estáticos) e `imediato_{...}` (atualizados após a predição do dia) usam os quatro classificadores com configurações padrão do notebook original. **O SGDClassifier original usa hinge e não deve ser confundido com o SGD logístico ponderado.**
 
 O meta-gradiente binário para regressão logística é:
 
@@ -59,7 +60,7 @@ python -m pytest code/feedback_ponderado_temporal/tests -q
 Os resultados são salvos em `result/feedback_ponderado_temporal/`:
 
 - `predicoes_e_pesos.csv`: data, índice, rótulo, previsões antes do treino, seleção para validação, tamanho da referência, meta-gradiente e peso utilizado.
-- `metricas_mensais.csv`: `accuracy`, `precision_macro`, `recall_macro` e `f1_macro` para os três cenários, com zero_division=0.
+- `metricas_mensais.csv`: `accuracy`, `precision_macro`, `recall_macro` e `f1_macro` para os 11 cenários, com zero_division=0.
 
 ## Limitações e próximos experimentos
 
@@ -69,3 +70,11 @@ Os resultados são salvos em `result/feedback_ponderado_temporal/`:
 4. Se houver duplicatas ou quase duplicatas entre as duas bases, separar/identificar esses registros antes de afirmar ganho de generalização.
 5. Não foi introduzido ruído artificial nos rótulos; resultados futuros devem diferenciar *noise robustness* de adaptação a *concept drift*.
 6. Não executar seleção de hiperparâmetros ou calibração usando notícias futuras; nenhuma métrica exibida aqui é resultado experimental obtido nas bases reais.
+
+## Por que os gráficos anteriores de feedback imediato podem estar inflados?
+
+No notebook `code/feedback_imediato/treinamento_offline.ipynb`, a célula que gera as curvas usa `Perceptron.treinar(i)` **antes** de `Perceptron.f1macro(i)`, repetindo isso para outros modelos. Em `treinar_mes_fakerecogna`, `partial_fit` recebe as mesmas notícias do mês que serão avaliadas em `f1macro(i)`. Assim, a métrica obtida é pós-treinamento no próprio mês, não uma estimativa prequential real. Não usar os valores históricos como baseline causal.
+
+Esta implementação corrige a comparação ao obter **todas as predições antes do feedback do dia**, tanto para estático quanto para imediato e ponderado. Os gráficos anteriores incluem novembro e dezembro de 2019, cujas pontuações não estão necessariamente no fluxo FakeRecogna pós-corte; a comparação aqui começa em janeiro de 2020. O SGD padrão do notebook (hinge) também é diferente do modelo experimental (log_loss).
+
+Avaliá-los lado a lado **não prova** que o feedback ponderado deva superar os melhores modelos. A pergunta experimental correta é se ele melhora, sob condições iguais, o desempenho do **mesmo classificador** em relação ao feedback imediato.
