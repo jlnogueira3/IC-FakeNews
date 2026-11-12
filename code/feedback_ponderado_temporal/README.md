@@ -45,7 +45,7 @@ python -m pip install numpy scipy pandas scikit-learn openpyxl pytest
 Rodar da raiz do projeto:
 
 ```bash
-python -m code.feedback_ponderado_temporal.feedback_ponderado_temporal \
+python code/feedback_ponderado_temporal/feedback_ponderado_temporal.py \
   --janela-dias 90 --reservar-cada 5 --min-validacao 20 \
   --max-validacao 256 --eta 0.05 --alpha-meta 10.0
 ```
