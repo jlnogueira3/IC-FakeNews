@@ -8,6 +8,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy import sparse
+from scipy.special import expit
+from sklearn.linear_model import SGDClassifier
 
 # O diretório do projeto é chamado "code", nome também usado pela stdlib.
 # Importamos este script diretamente para evitar colisões de módulos.
@@ -81,8 +83,15 @@ def test_prequential_sem_vazamento_temporal():
     )
     historico, mensal = executar_experimento(treino, rotulos, fluxo, cfg)
     assert len(historico) == len(fluxo)
-    assert mensal["modelo"].nunique() == 3
+    assert mensal["modelo"].nunique() == 11
     assert historico["posicao_fluxo"].is_unique
+    # Predição do primeiro dia deve ser idêntica no offline e imediato,
+    # porque nenhuma atualização no fluxo ainda ocorreu.
+    for nome in ("Perceptron", "PassiveAggressiveClassifier", "MultinomialNB", "SGDClassifier"):
+        assert (
+            historico.iloc[:2][f"pred_offline_{nome}"].tolist()
+            == historico.iloc[:2][f"pred_imediato_{nome}"].tolist()
+        )
     assert historico["reserva_validacao"].sum() == 6
     assert historico.loc[historico["reserva_validacao"], "peso_feedback"].isna().all()
     assert (historico.loc[~historico["reserva_validacao"], "peso_feedback"] >= 0.05).all()
@@ -110,3 +119,27 @@ def test_validacao_expira_depois_da_janela():
     )
     hist, _ = executar_experimento(treino, rotulos, fluxo, cfg)
     assert (hist["n_validacao_usada"] == 0).all()
+
+
+def test_derivada_analitica_confere_com_diferencas_finitas():
+    X = sparse.csr_matrix([[1.0, 1.0], [-1.0, 1.0]])
+    y = np.array([1, 0])
+    modelo = SGDClassifier(
+        loss="log_loss", penalty=None, learning_rate="constant",
+        eta0=0.1, fit_intercept=False, random_state=42,
+    )
+    modelo.partial_fit(X, y, classes=[0, 1])
+    noticia = sparse.csr_matrix([[0.75, 1.0]])
+    yi, eta, peso = 1, 0.1, 0.5
+    grad = meta_gradiente(modelo, noticia, yi, X, y, eta, peso)
+    coef = modelo.coef_.copy()[0]
+    erro = float(expit(modelo.decision_function(noticia)[0]) - yi)
+    gi = erro * noticia.toarray().ravel()
+
+    def loss_virtual(w):
+        logits = X @ (coef - eta * w * gi)
+        return np.mean(np.logaddexp(0, logits) - y * logits)
+
+    delta = 1e-5
+    grad_numerico = (loss_virtual(peso + delta) - loss_virtual(peso - delta)) / (2 * delta)
+    assert np.isclose(grad, grad_numerico, atol=1e-8)
