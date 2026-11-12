@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 from scipy import sparse
 from scipy.special import expit
-from sklearn.base import clone
+from copy import deepcopy
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.linear_model import SGDClassifier
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
@@ -234,11 +234,28 @@ def executar_experimento(
     cfg.validate()
     if fluxo.empty:
         raise ValueError("Não há notícias na FakeRecogna após a data de início")
-    fluxo = preparar_fakerecogna(
-        fluxo.rename(columns={"texto": "Noticia", "rotulo": "rotulo_padrao"})
-        .assign(Classe=lambda d: 1 - d["rotulo_padrao"], Data=lambda d: d["data"]),
-        cfg.inicio,
-    ) if {"Noticia", "Classe", "Data"}.issubset(fluxo.columns) is False else preparar_fakerecogna(fluxo, cfg.inicio)
+    if {"Noticia", "Classe", "Data"}.issubset(fluxo.columns):
+        fluxo = preparar_fakerecogna(fluxo, cfg.inicio)
+    elif {"data", "texto", "rotulo"}.issubset(fluxo.columns):
+        # Permite passar diretamente o resultado de carregar_fakerecogna().
+        fluxo = fluxo.copy()
+        fluxo["data"] = pd.to_datetime(fluxo["data"], errors="coerce").dt.normalize()
+        fluxo["rotulo"] = pd.to_numeric(fluxo["rotulo"], errors="coerce")
+        fluxo["texto"] = fluxo["texto"].fillna("").astype(str).str.strip()
+        fluxo = fluxo.dropna(subset=["data", "rotulo"])
+        fluxo = fluxo[
+            (fluxo["data"] >= pd.Timestamp(cfg.inicio))
+            & (fluxo["texto"].str.len() > 0)
+        ].copy()
+        if not fluxo["rotulo"].isin([0, 1]).all():
+            raise ValueError("O fluxo deve usar 0=verdadeira e 1=falsa")
+        fluxo["rotulo"] = fluxo["rotulo"].astype(int)
+        fluxo = fluxo.sort_values("data", kind="stable").reset_index(drop=True)
+        fluxo["posicao_fluxo"] = np.arange(len(fluxo), dtype=int)
+    else:
+        raise ValueError("Colunas esperadas: Noticia/Classe/Data ou data/texto/rotulo")
+    if fluxo.empty:
+        raise ValueError("Nenhuma notícia disponível após a data de início")
 
     vetorizador = HashingVectorizer(
         lowercase=True, ngram_range=(1, 2), n_features=cfg.n_features,
@@ -256,10 +273,9 @@ def executar_experimento(
         random_state=cfg.random_state, max_iter=1000, tol=1e-3,
     )
     modelo_base.fit(X_inicial, y_inicial)
-    ponderado = clone(modelo_base)
-    ponderado = __import__("copy").deepcopy(modelo_base)
-    constante = __import__("copy").deepcopy(modelo_base)
-    imediato_total = __import__("copy").deepcopy(modelo_base)
+    ponderado = deepcopy(modelo_base)
+    constante = deepcopy(modelo_base)
+    imediato_total = deepcopy(modelo_base)
 
     # Cada referência: (data, linha_esparsa, classe).
     # Referências NUNCA entram em partial_fit(ponderado/constante).
