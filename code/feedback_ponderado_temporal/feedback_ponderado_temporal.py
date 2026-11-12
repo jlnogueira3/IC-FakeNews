@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 from collections import deque
+from copy import deepcopy
 from dataclasses import dataclass
 from pathlib import Path
 import re
@@ -112,6 +113,8 @@ def mapear_classe_fakerecogna(valor: object) -> float:
     """A FakeRecogna original usa 0=fake e 1=true (inverso da Fake.br)."""
     if pd.isna(valor):
         return float("nan")
+    if isinstance(valor, (bool, np.bool_)):
+        return float(0 if valor else 1)
     if isinstance(valor, str):
         rotulo = valor.strip().lower()
         if rotulo in ("true", "verdadeira", "verdadeiro", "real"):
@@ -123,7 +126,7 @@ def mapear_classe_fakerecogna(valor: object) -> float:
     except (ValueError, TypeError):
         raise ValueError(f"Rótulo desconhecido da FakeRecogna: {valor!r}") from None
     if numerico not in (0, 1) or str(valor).strip() not in (
-        "0", "1", "0.0", "1.0", "False", "True"
+        "0", "1", "0.0", "1.0"
     ):
         raise ValueError(f"Rótulo inválido da FakeRecogna: {valor!r}")
     return float(1 - numerico)
